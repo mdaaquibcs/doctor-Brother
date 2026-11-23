@@ -1,0 +1,90 @@
+{
+  "business": [
+    {
+      "reference_id": "DAC-B2B-2026-649213",
+      "category": "b2b",
+      "full_name": "BJKDWKJ",
+      "email": "nkjdcbb@gmai.com",
+      "phone": "620529365899",
+      "organization": "Homepage Quick Enquiry Lead",
+      "city": null,
+      "service_type": "Corporate Healthcare",
+      "message": "bcjhbdv",
+      "source_url": "/",
+      "status": "new",
+      "priority": "normal",
+      "id": "b2b-1795173099295-59",
+      "created_at": "2026-11-20T11:11:39.295Z"
+    },
+    {
+      "reference_id": "DAC-B2B-2026-731491",
+      "category": "hospital_management",
+      "full_name": "Dr. Rajesh Sharma",
+      "email": "dr.sharma@apollohealth.org",
+      "phone": "+91 98765 43210",
+      "organization": "City Care Multi-Specialty Hospital",
+      "city": "New Delhi",
+      "service_type": "Hospital Operations Management",
+      "message": "We require a complete 150-bed ICU audit and hospital management proposal.",
+      "source_url": "/",
+      "status": "new",
+      "priority": "normal",
+      "id": "b2b-1793519323689-213",
+      "created_at": "2026-11-01T07:48:43.689Z"
+    },
+    {
+      "id": "demo-b2b-01",
+      "reference_id": "DAC-B2B-2026-101010",
+      "category": "b2b",
+      "full_name": "Dr. Vikram Sethi",
+      "email": "v.sethi@apollo-metro.org",
+      "phone": "+91 98110 54321",
+      "organization": "Metro Heart & Surgical Institute",
+      "city": "New Delhi",
+      "service_type": "Hospital Operations Management",
+      "message": "Exploring 180-bed turnkey hospital management and clinical audit.",
+      "status": "new",
+      "priority": "high",
+      "source_url": "/",
+      "created_at": "2026-11-01T06:48:43.676Z"
+    }
+  ],
+  "patients": [
+    {
+      "reference_id": "DAC-PAT-2026-412559",
+      "full_name": "hbbj",
+      "email": "hbhk@gmail.com",
+      "phone": "6205293563",
+      "city": "Delhi NCR",
+      "country": "India",
+      "is_international": false,
+      "specialty": "Super-Specialty Care",
+      "medical_concern": "ghvvbjb",
+      "timeline": "Immediate / Within 1 Week",
+      "coordinator_name": "Operations Team",
+      "source_url": "/find-treatment",
+      "status": "new",
+      "priority": "normal",
+      "id": "pat-1793524733858-501",
+      "created_at": "2026-11-01T09:18:53.858Z"
+    },
+    {
+      "id": "demo-pat-01",
+      "reference_id": "DAC-PAT-2026-202020",
+      "full_name": "Farhan Al-Mansoor",
+      "email": "farhan.m@gulfcare.ae",
+      "phone": "+971 50 123 4567",
+      "city": "Dubai",
+      "country": "UAE",
+      "is_international": true,
+      "specialty": "Cardiac Sciences",
+      "medical_concern": "Minimally invasive TAVI valve replacement surgery quote.",
+      "timeline": "Within 2 Weeks",
+      "status": "new",
+      "priority": "normal",
+      "coordinator_name": "Senior Care Team",
+      "source_url": "/find-treatment",
+      "created_at": "2026-11-01T05:48:43.676Z"
+    }
+  ]
+}
