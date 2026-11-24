@@ -1,0 +1,164 @@
+{
+  "verifiedPages": 25,
+  "pages": [
+    {
+      "route": "/",
+      "status": 200,
+      "heroImage": "/images/pages/home.webp",
+      "checks": "one h1, shared hero, unique image, header styling"
+    },
+    {
+      "route": "/about-us",
+      "status": 200,
+      "heroImage": "/images/pages/about-us.webp",
+      "checks": "one h1, shared hero, unique image, header styling"
+    },
+    {
+      "route": "/services",
+      "status": 200,
+      "heroImage": "/images/pages/services.webp",
+      "checks": "one h1, shared hero, unique image, header styling"
+    },
+    {
+      "route": "/corporate-healthcare",
+      "status": 200,
+      "heroImage": "/images/pages/corporate-healthcare.webp",
+      "checks": "one h1, shared hero, unique image, header styling"
+    },
+    {
+      "route": "/corporate-partnerships",
+      "status": 200,
+      "heroImage": "/images/pages/corporate-partnerships.webp",
+      "checks": "one h1, shared hero, unique image, header styling"
+    },
+    {
+      "route": "/careers",
+      "status": 200,
+      "heroImage": "/images/pages/careers.webp",
+      "checks": "one h1, shared hero, unique image, header styling"
+    },
+    {
+      "route": "/contact-us",
+      "status": 200,
+      "heroImage": "/images/pages/contact-us.webp",
+      "checks": "one h1, shared hero, unique image, header styling"
+    },
+    {
+      "route": "/doctor-recruitment",
+      "status": 200,
+      "heroImage": "/images/pages/doctor-recruitment.webp",
+      "checks": "one h1, shared hero, unique image, header styling"
+    },
+    {
+      "route": "/domestic-patients",
+      "status": 200,
+      "heroImage": "/images/pages/domestic-patients.webp",
+      "checks": "one h1, shared hero, unique image, header styling"
+    },
+    {
+      "route": "/find-doctors",
+      "status": 200,
+      "heroImage": "/images/pages/find-doctors.webp",
+      "checks": "one h1, shared hero, unique image, header styling"
+    },
+    {
+      "route": "/find-hospitals",
+      "status": 200,
+      "heroImage": "/images/pages/find-hospitals.webp",
+      "checks": "one h1, shared hero, unique image, header styling"
+    },
+    {
+      "route": "/find-treatment",
+      "status": 200,
+      "heroImage": "/images/pages/find-treatment.webp",
+      "checks": "one h1, shared hero, unique image, header styling"
+    },
+    {
+      "route": "/for-patients",
+      "status": 200,
+      "heroImage": "/images/pages/for-patients.webp",
+      "checks": "one h1, shared hero, unique image, header styling"
+    },
+    {
+      "route": "/healthcare-staffing",
+      "status": 200,
+      "heroImage": "/images/pages/healthcare-staffing.webp",
+      "checks": "one h1, shared hero, unique image, header styling"
+    },
+    {
+      "route": "/hospital-management",
+      "status": 200,
+      "heroImage": "/images/pages/hospital-management.webp",
+      "checks": "one h1, shared hero, unique image, header styling"
+    },
+    {
+      "route": "/hospital-setup-consultancy",
+      "status": 200,
+      "heroImage": "/images/pages/hospital-setup-consultancy.webp",
+      "checks": "one h1, shared hero, unique image, header styling"
+    },
+    {
+      "route": "/international-patients",
+      "status": 200,
+      "heroImage": "/images/pages/international-patients.webp",
+      "checks": "one h1, shared hero, unique image, header styling"
+    },
+    {
+      "route": "/medical-equipment",
+      "status": 200,
+      "heroImage": "/images/pages/medical-equipment.webp",
+      "checks": "one h1, shared hero, unique image, header styling"
+    },
+    {
+      "route": "/nursing-staffing",
+      "status": 200,
+      "heroImage": "/images/pages/nursing-staffing.webp",
+      "checks": "one h1, shared hero, unique image, header styling"
+    },
+    {
+      "route": "/patient-care-coordination",
+      "status": 200,
+      "heroImage": "/images/pages/patient-care-coordination.webp",
+      "checks": "one h1, shared hero, unique image, header styling"
+    },
+    {
+      "route": "/privacy-policy",
+      "status": 200,
+      "heroImage": "/images/pages/privacy-policy.webp",
+      "checks": "one h1, shared hero, unique image, header styling"
+    },
+    {
+      "route": "/surgery-packages",
+      "status": 200,
+      "heroImage": "/images/pages/surgery-packages.webp",
+      "checks": "one h1, shared hero, unique image, header styling"
+    },
+    {
+      "route": "/terms-and-conditions",
+      "status": 200,
+      "heroImage": "/images/pages/terms-and-conditions.webp",
+      "checks": "one h1, shared hero, unique image, header styling"
+    },
+    {
+      "route": "/vision-and-mission",
+      "status": 200,
+      "heroImage": "/images/pages/vision-and-mission.webp",
+      "checks": "one h1, shared hero, unique image, header styling"
+    },
+    {
+      "route": "/admin/enquiries",
+      "status": 200,
+      "heroImage": "/images/pages/admin-enquiries.webp",
+      "checks": "one h1, shared hero, unique image, header styling"
+    }
+  ],
+  "styles": "shared theme and opaque dropdown CSS served",
+  "visualBrowserCheck": "Unavailable: browser access host is unavailable",
+  "assets": {
+    "uniqueImages": 25,
+    "originalAndNextOptimizedHTTP": "all 200",
+    "totalWebPBytes": 3268018,
+    "imageVisualQA": "All generated images inspected; source contact sheets reviewed."
+  },
+  "build": "Production build and TypeScript passed"
+}

@@ -54,7 +54,7 @@ export default function StaffingSolutionsSection({ onOpenModal }: StaffingSoluti
   ];
 
   return (
-    <section id="staffing-solutions" className="py-20 bg-white relative border-t border-slate-200">
+    <section id="staffing-solutions" className="care-content py-20 bg-transparent relative border-t border-slate-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
@@ -77,7 +77,7 @@ export default function StaffingSolutionsSection({ onOpenModal }: StaffingSoluti
           {staffCategories.map((item, index) => (
             <div
               key={index}
-              className="bg-slate-50 hover:bg-white rounded-2xl p-6 border border-slate-200/90 shadow-sm hover:shadow-md transition-all flex flex-col justify-between group"
+              className="care-card rounded-2xl p-6 border border-slate-200/90 shadow-sm hover:shadow-md transition-all flex flex-col justify-between group"
             >
               <div>
                 <div className="flex items-center justify-between">

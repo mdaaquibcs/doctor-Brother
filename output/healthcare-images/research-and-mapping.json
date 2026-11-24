@@ -1,0 +1,253 @@
+{
+  "purpose": "Visual research to guide distinct healthcare imagery; not a clinical or legal audit of existing site content.",
+  "references": [
+    {
+      "url": "https://www.who.int/health-topics/integrated-people-centered-care",
+      "application": "Patient and family participation, respectful consultation and coordinated care scenes."
+    },
+    {
+      "url": "https://www.who.int/health-topics/quality-of-care",
+      "application": "Clinical teamwork, capable staff, healthcare facilities and operational support."
+    },
+    {
+      "url": "https://www.who.int/health-topics/occupational-health",
+      "application": "Workplace clinic and employee health consultation scene."
+    },
+    {
+      "url": "https://www.who.int/teams/health-product-policy-and-standards/assistive-and-medical-technology/medical-devices",
+      "application": "Biomedical engineer, equipment inspection and maintenance scene."
+    },
+    {
+      "url": "https://www.who.int/publications/b/78362",
+      "application": "Nursing education, collaborative training and team handover scenes."
+    }
+  ],
+  "image_policy": "Original AI-generated illustrative scenes. No identification as real staff, facilities or named clinicians.",
+  "routes": {
+    "/": {
+      "image": "/images/pages/home.webp",
+      "badge": "Dr. AllCare Healthcare Solutions",
+      "title": "Care, made simpler.",
+      "accent": "Support at every step.",
+      "description": "Explore trusted specialists and treatment options, with a dedicated team to support your healthcare journey.",
+      "alt": "A reassuring conversation between a doctor and a patient",
+      "caption": "Care starts with a conversation"
+    },
+    "/about-us": {
+      "image": "/images/pages/about-us.webp",
+      "badge": "About Dr. AllCare",
+      "title": "Better healthcare.",
+      "accent": "Built around people.",
+      "description": "Meet the team connecting hospital operations, healthcare professionals and patient support across India.",
+      "alt": "An illustrative physician, nurse and hospital administrator discussing care",
+      "caption": "People at the heart of healthcare"
+    },
+    "/services": {
+      "image": "/images/pages/services.webp",
+      "badge": "Our services",
+      "title": "Connected expertise.",
+      "accent": "Complete healthcare.",
+      "description": "Explore hospital management, workplace healthcare, medical staffing and patient support, all in one place.",
+      "alt": "A multidisciplinary healthcare team collaborating in a hospital",
+      "caption": "Expertise that works together"
+    },
+    "/corporate-healthcare": {
+      "image": "/images/pages/corporate-healthcare.webp",
+      "badge": "For businesses",
+      "title": "Healthier teams.",
+      "accent": "Stronger workplaces.",
+      "description": "Bring medical expertise closer to your workforce with on-site clinics, occupational health and employee wellness support.",
+      "alt": "An occupational health clinician consulting an employee",
+      "caption": "Care that comes to your workplace"
+    },
+    "/corporate-partnerships": {
+      "image": "/images/pages/corporate-partnerships.webp",
+      "badge": "Healthcare partnerships",
+      "title": "Shared expertise.",
+      "accent": "Lasting partnerships.",
+      "description": "Work with our healthcare team to plan and manage services for your organization, hospital or community.",
+      "alt": "A clinician and corporate partner planning healthcare services",
+      "caption": "Working together for better care"
+    },
+    "/careers": {
+      "image": "/images/pages/careers.webp",
+      "badge": "Careers at Dr. AllCare",
+      "title": "Your next chapter.",
+      "accent": "A career in care.",
+      "description": "Explore opportunities in clinical services, healthcare operations and patient support. Bring your skills to work that matters.",
+      "alt": "Healthcare professionals welcoming a new team member",
+      "caption": "Make a difference, every day"
+    },
+    "/contact-us": {
+      "image": "/images/pages/contact-us.webp",
+      "badge": "Let’s connect",
+      "title": "A conversation today.",
+      "accent": "A clearer way forward.",
+      "description": "Tell us what you need. Our team can help with patient care, healthcare services and business enquiries.",
+      "alt": "A healthcare reception coordinator welcoming a visitor",
+      "caption": "A helpful team, within reach"
+    },
+    "/doctor-recruitment": {
+      "image": "/images/pages/doctor-recruitment.webp",
+      "badge": "Doctor recruitment",
+      "title": "Clinical expertise.",
+      "accent": "The right connection.",
+      "description": "Connect your hospital with specialist doctors, consultants and resident medical officers for your clinical needs.",
+      "alt": "A physician meeting a clinical recruitment coordinator",
+      "caption": "Connecting skills with opportunities"
+    },
+    "/domestic-patients": {
+      "image": "/images/pages/domestic-patients.webp",
+      "badge": "Care across India",
+      "title": "A new city.",
+      "accent": "A familiar helping hand.",
+      "description": "Get support with appointments, travel planning and hospital coordination when seeking treatment away from home.",
+      "alt": "An Indian patient and family arriving with a healthcare coordinator",
+      "caption": "Support beyond your hometown"
+    },
+    "/find-doctors": {
+      "image": "/images/pages/find-doctors.webp",
+      "badge": "Find doctors",
+      "title": "Find your specialist.",
+      "accent": "Take the next step.",
+      "description": "Explore medical specialties and connect with our team for appointments, second opinions and treatment discussions.",
+      "alt": "An experienced doctor in a bright consultation room",
+      "caption": "The right conversation for your care"
+    },
+    "/find-hospitals": {
+      "image": "/images/pages/find-hospitals.webp",
+      "badge": "Find hospitals",
+      "title": "Explore your options.",
+      "accent": "Find the right setting.",
+      "description": "Compare hospital services and locations with guidance from a team that helps you plan your care.",
+      "alt": "A contemporary hospital reception with healthcare staff",
+      "caption": "A welcoming place for care"
+    },
+    "/find-treatment": {
+      "image": "/images/pages/find-treatment.webp",
+      "badge": "Find treatment",
+      "title": "Understand your options.",
+      "accent": "Plan your next step.",
+      "description": "Explore treatment specialties and speak with our team about consultations, hospital choices and care coordination.",
+      "alt": "A doctor discussing treatment options with a patient",
+      "caption": "Informed choices, personal support"
+    },
+    "/for-patients": {
+      "image": "/images/pages/for-patients.webp",
+      "badge": "For patients",
+      "title": "Your care journey.",
+      "accent": "Made easier, together.",
+      "description": "Find treatment information, connect with specialists and get practical support throughout your healthcare journey.",
+      "alt": "A patient and family receiving guidance from a healthcare professional",
+      "caption": "Here for you and your family"
+    },
+    "/healthcare-staffing": {
+      "image": "/images/pages/healthcare-staffing.webp",
+      "badge": "Healthcare staffing",
+      "title": "Skilled people.",
+      "accent": "Stronger care teams.",
+      "description": "Build your clinical workforce with doctors, nurses and allied health professionals matched to your facility’s needs.",
+      "alt": "Doctors and nurses collaborating during a shift handover",
+      "caption": "Every role supports better care"
+    },
+    "/hospital-management": {
+      "image": "/images/pages/hospital-management.webp",
+      "badge": "Hospital management",
+      "title": "Better operations.",
+      "accent": "More focus on care.",
+      "description": "Support your hospital with coordinated administration, staffing, patient services and operational planning.",
+      "alt": "Hospital leaders and clinicians reviewing operational plans",
+      "caption": "Helping healthcare run smoothly"
+    },
+    "/hospital-setup-consultancy": {
+      "image": "/images/pages/hospital-setup-consultancy.webp",
+      "badge": "Hospital setup & consultancy",
+      "title": "A vision for care.",
+      "accent": "A space to deliver it.",
+      "description": "Plan your healthcare facility from early layouts and equipment needs through operational readiness.",
+      "alt": "An architect and clinician reviewing hospital floor plans",
+      "caption": "Thoughtful spaces for better care"
+    },
+    "/international-patients": {
+      "image": "/images/pages/international-patients.webp",
+      "badge": "International patients",
+      "title": "Care across borders.",
+      "accent": "Support close at hand.",
+      "description": "Plan your treatment journey to India with help coordinating medical appointments, travel and local support.",
+      "alt": "A care coordinator welcoming an international patient and companion",
+      "caption": "A warm welcome, wherever you’re from"
+    },
+    "/medical-equipment": {
+      "image": "/images/pages/medical-equipment.webp",
+      "badge": "Medical equipment",
+      "title": "The right technology.",
+      "accent": "Ready for better care.",
+      "description": "Explore equipment sourcing, leasing and maintenance support for your hospital or clinical facility.",
+      "alt": "A biomedical engineer inspecting a clinical monitor",
+      "caption": "Technology that supports your team"
+    },
+    "/nursing-staffing": {
+      "image": "/images/pages/nursing-staffing.webp",
+      "badge": "Nursing & allied health",
+      "title": "Compassionate people.",
+      "accent": "Capable care teams.",
+      "description": "Connect with nursing and technical professionals for wards, critical care units and diagnostic services.",
+      "alt": "Nurses practising clinical skills together in a training setting",
+      "caption": "Skills, teamwork and compassion"
+    },
+    "/patient-care-coordination": {
+      "image": "/images/pages/patient-care-coordination.webp",
+      "badge": "Patient coordination",
+      "title": "Every appointment.",
+      "accent": "A helping hand.",
+      "description": "Get practical support with hospital visits, admission planning and follow-up coordination for you and your family.",
+      "alt": "A nurse and patient discussing a recovery and appointment plan",
+      "caption": "Support through the care journey"
+    },
+    "/privacy-policy": {
+      "image": "/images/pages/privacy-policy.webp",
+      "badge": "Privacy & information",
+      "title": "Your information.",
+      "accent": "Handled with care.",
+      "description": "Read how information is collected, used and handled when you engage with Dr. AllCare.",
+      "alt": "A healthcare professional reviewing records on a private workstation",
+      "caption": "Respect for your information"
+    },
+    "/surgery-packages": {
+      "image": "/images/pages/surgery-packages.webp",
+      "badge": "Surgery packages",
+      "title": "Plan your treatment.",
+      "accent": "Understand the costs.",
+      "description": "Explore procedure options and request a personalized estimate based on your clinical needs and hospital choice.",
+      "alt": "A surgeon explaining a treatment plan to a patient in a consultation",
+      "caption": "Clearer conversations about care"
+    },
+    "/terms-and-conditions": {
+      "image": "/images/pages/terms-and-conditions.webp",
+      "badge": "Terms & conditions",
+      "title": "Clear expectations.",
+      "accent": "A shared understanding.",
+      "description": "Review the terms that guide our healthcare coordination and institutional service relationships.",
+      "alt": "A clinician explaining healthcare paperwork to a patient",
+      "caption": "Clarity at every step"
+    },
+    "/vision-and-mission": {
+      "image": "/images/pages/vision-and-mission.webp",
+      "badge": "Our vision & mission",
+      "title": "A healthier tomorrow.",
+      "accent": "A shared purpose.",
+      "description": "Discover the values behind our work: thoughtful operations, collaborative teams and compassionate patient support.",
+      "alt": "A healthcare team participating in a community health outreach",
+      "caption": "Care with purpose"
+    },
+    "/admin/enquiries": {
+      "image": "/images/pages/admin-enquiries.webp",
+      "badge": "Operations desk",
+      "title": "Every enquiry.",
+      "accent": "A thoughtful response.",
+      "description": "Review and coordinate business and patient enquiries from one workspace.",
+      "alt": "A medical care coordinator at an organized workstation",
+      "caption": "Keeping care connected"
+    }
+  }
+}

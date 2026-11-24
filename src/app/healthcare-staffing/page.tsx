@@ -13,7 +13,7 @@ export default function HealthcareStaffingPage() {
   const [modalOpen, setModalOpen] = useState(false);
 
   return (
-    <main className="min-h-screen flex flex-col bg-slate-50">
+    <main className="care-page min-h-screen flex flex-col">
       <Header onOpenModal={() => setModalOpen(true)} />
 
       <PageHeader

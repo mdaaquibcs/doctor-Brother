@@ -2,6 +2,13 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   /* config options here */
+  // Credentials, sessions and mutable enquiry data are runtime-only files.
+  outputFileTracingExcludes: {
+    "/*": ["./.local/**/*", "./src/data/local_enquiries.json"],
+  },
+  experimental: {
+    agentUpgrade: "security",
+  },
   turbopack: {
     rules: {
       "*.css": {

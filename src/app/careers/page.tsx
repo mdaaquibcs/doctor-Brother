@@ -49,7 +49,7 @@ export default function CareersPage() {
   ];
 
   return (
-    <main className="min-h-screen flex flex-col bg-slate-50">
+    <main className="care-page min-h-screen flex flex-col">
       <Header onOpenModal={() => setModalOpen(true)} />
 
       <PageHeader
@@ -61,7 +61,7 @@ export default function CareersPage() {
         onCtaClick={() => setModalOpen(true)}
       />
 
-      <section className="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+      <section className="care-content py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
         <div className="border-b border-slate-200 pb-4">
           <h2 className="text-xl font-bold text-[#0A1E3F]">
             Current Professional Openings
@@ -73,7 +73,7 @@ export default function CareersPage() {
 
         <div className="space-y-4">
           {jobs.map((job, idx) => (
-            <div key={idx} className="bg-white p-6 rounded-2xl border border-slate-200/90 shadow-sm flex flex-col md:flex-row items-start md:items-center justify-between gap-4 hover:shadow-md transition">
+            <div key={idx} className="care-card p-6 rounded-2xl border border-slate-200/90 shadow-sm flex flex-col md:flex-row items-start md:items-center justify-between gap-4 hover:shadow-md transition">
               <div className="space-y-1.5 max-w-2xl">
                 <div className="flex items-center gap-2">
                   <span className="text-[10px] font-bold uppercase tracking-wider text-teal-700 bg-teal-50 px-2 py-0.5 rounded border border-teal-200">

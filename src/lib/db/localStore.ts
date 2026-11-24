@@ -1,7 +1,14 @@
 import fs from "fs/promises";
 import path from "path";
+import { randomBytes } from "node:crypto";
 
-const DATA_FILE = path.join(process.cwd(), "src", "data", "local_enquiries.json");
+const DATA_FILE = process.env.LOCAL_ENQUIRIES_FILE || path.join(process.cwd(), "src", "data", "local_enquiries.json");
+const storageGlobal = globalThis as typeof globalThis & { allcareEnquiryQueue?: Promise<unknown> };
+function mutateDatabase<T>(operation: () => Promise<T>): Promise<T> {
+  const task = (storageGlobal.allcareEnquiryQueue || Promise.resolve()).catch(() => {}).then(operation);
+  storageGlobal.allcareEnquiryQueue = task;
+  return task;
+}
 
 export interface StoredBusinessEnquiry {
   id: string;
@@ -87,49 +94,75 @@ const INITIAL_DATA: LocalDatabase = {
 
 async function readDatabase(): Promise<LocalDatabase> {
   try {
-    const content = await fs.readFile(DATA_FILE, "utf-8");
+    // Mutable enquiry data belongs on persistent storage, never in the deploy bundle.
+    const content = await fs.readFile(/* turbopackIgnore: true */ DATA_FILE, "utf-8");
     return JSON.parse(content);
-  } catch {
-    // If file doesn't exist yet, initialize it
+  } catch (error) {
+    if ((error as NodeJS.ErrnoException).code !== "ENOENT") throw error;
+    // Initialize only a missing database; never overwrite a damaged file.
     await writeDatabase(INITIAL_DATA);
     return INITIAL_DATA;
   }
 }
 
 async function writeDatabase(data: LocalDatabase): Promise<void> {
-  await fs.writeFile(DATA_FILE, JSON.stringify(data, null, 2), "utf-8");
+  await fs.mkdir(path.dirname(DATA_FILE), { recursive: true });
+  const temporary = `${DATA_FILE}.${randomBytes(6).toString("hex")}.tmp`;
+  await fs.writeFile(temporary, JSON.stringify(data, null, 2), { mode: 0o600 });
+  await fs.rename(temporary, DATA_FILE);
 }
 
 export async function saveLocalBusinessEnquiry(
   item: Omit<StoredBusinessEnquiry, "id" | "created_at">
 ): Promise<StoredBusinessEnquiry> {
-  const db = await readDatabase();
-  const newRecord: StoredBusinessEnquiry = {
-    ...item,
-    id: `b2b-${Date.now()}-${Math.floor(Math.random() * 1000)}`,
-    created_at: new Date().toISOString(),
-  };
+  return mutateDatabase(async () => {
+    const db = await readDatabase();
+    const newRecord: StoredBusinessEnquiry = {
+      ...item,
+      id: `b2b-${Date.now()}-${Math.floor(Math.random() * 1000)}`,
+      created_at: new Date().toISOString(),
+    };
 
-  db.business.unshift(newRecord);
-  await writeDatabase(db);
-  return newRecord;
+    db.business.unshift(newRecord);
+    await writeDatabase(db);
+    return newRecord;
+  });
 }
 
 export async function saveLocalPatientEnquiry(
   item: Omit<StoredPatientEnquiry, "id" | "created_at">
 ): Promise<StoredPatientEnquiry> {
-  const db = await readDatabase();
-  const newRecord: StoredPatientEnquiry = {
-    ...item,
-    id: `pat-${Date.now()}-${Math.floor(Math.random() * 1000)}`,
-    created_at: new Date().toISOString(),
-  };
+  return mutateDatabase(async () => {
+    const db = await readDatabase();
+    const newRecord: StoredPatientEnquiry = {
+      ...item,
+      id: `pat-${Date.now()}-${Math.floor(Math.random() * 1000)}`,
+      created_at: new Date().toISOString(),
+    };
 
-  db.patients.unshift(newRecord);
-  await writeDatabase(db);
-  return newRecord;
+    db.patients.unshift(newRecord);
+    await writeDatabase(db);
+    return newRecord;
+  });
 }
 
 export async function getLocalEnquiries(): Promise<LocalDatabase> {
   return readDatabase();
+}
+
+export async function updateLocalEnquiry(
+  type: "business" | "patient",
+  id: string,
+  updates: { status?: string; priority?: string },
+) {
+  return mutateDatabase(async () => {
+    const db = await readDatabase();
+    const records = type === "business" ? db.business : db.patients;
+    const record = records.find((item) => item.id === id);
+    if (!record) return null;
+    if (updates.status !== undefined) record.status = updates.status;
+    if (updates.priority !== undefined) record.priority = updates.priority;
+    await writeDatabase(db);
+    return record;
+  });
 }

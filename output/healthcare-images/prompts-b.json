@@ -1,0 +1,89 @@
+{
+  "generator": "built-in image_gen",
+  "entries": [
+    {
+      "slug": "hospital-setup-consultancy",
+      "prompt": "Use case: photorealistic-natural. Asset type: landscape 3:2 healthcare website hero photograph. Scene: An Indian female doctor and male healthcare architect thoughtfully examining an unlabelled architectural hospital floor plan at a table in a bright unfinished but clean new hospital wing. A small architectural model and rolled plans nearby, no construction hazards, collaborative planning.. Contemporary Indian healthcare setting, natural daylight, realistic skin texture and hands, editorial candid photography, subtle navy and teal accents, reassuring professional mood. Keep the important people and objects within the central 80 percent for responsive cropping. No text, logos, watermarks, named hospitals or real identities. Fictional representative people, not actual staff.",
+      "source": "/Users/asjadmac/.codex/generated_images/01a20e93-3306-7cb2-a0be-9621461f1936/exec-88211003-b886-4b28-a112-3a62cabe0d34.png",
+      "final": "public/images/pages/hospital-setup-consultancy.webp",
+      "original": "output/healthcare-images/originals/hospital-setup-consultancy.png"
+    },
+    {
+      "slug": "international-patients",
+      "prompt": "Use case: photorealistic-natural. Asset type: landscape 3:2 healthcare website hero photograph. Scene: An Indian patient liaison in navy professional attire warmly welcoming an adult international couple, one woman wearing a modest headscarf and a man in casual travel clothing, inside a bright hospital lobby. One discreet suitcase near their chairs. Respectful natural interaction and a welcoming environment.. Contemporary Indian healthcare setting, natural daylight, realistic skin texture and hands, editorial candid photography, subtle navy and teal accents, reassuring professional mood. Keep the important people and objects within the central 80 percent for responsive cropping. No text, logos, watermarks, named hospitals or real identities. Fictional representative people, not actual staff.",
+      "source": "/Users/asjadmac/.codex/generated_images/01a20e93-3306-7cb2-a0be-9621461f1936/exec-bcb4fd7d-104a-4001-a123-32bbf1cdb0f6.png",
+      "final": "public/images/pages/international-patients.webp",
+      "original": "output/healthcare-images/originals/international-patients.png"
+    },
+    {
+      "slug": "medical-equipment",
+      "prompt": "Use case: photorealistic-natural. Asset type: landscape 3:2 healthcare website hero photograph. Scene: An Indian female biomedical engineer inspecting a modern patient monitor beside a neatly arranged hospital diagnostic workstation, with a male clinician in teal scrubs observing. No patient attached, no readable screen text, believable equipment and natural hand placement.. Contemporary Indian healthcare setting, natural daylight, realistic skin texture and hands, editorial candid photography, subtle navy and teal accents, reassuring professional mood. Keep the important people and objects within the central 80 percent for responsive cropping. No text, logos, watermarks, named hospitals or real identities. Fictional representative people, not actual staff.",
+      "source": "/Users/asjadmac/.codex/generated_images/01a20e93-3306-7cb2-a0be-9621461f1936/exec-a97d1a57-3259-4d6b-8098-f3519613e8d6.png",
+      "final": "public/images/pages/medical-equipment.webp",
+      "original": "output/healthcare-images/originals/medical-equipment.png"
+    },
+    {
+      "slug": "nursing-staffing",
+      "prompt": "Use case: photorealistic-natural. Asset type: landscape 3:2 healthcare website hero photograph. Scene: Two Indian nurses in teal and blue scrubs practicing a routine skills handover beside a neatly made empty hospital bed. One explains equipment on a bedside trolley while the other listens attentively. Bright clean ward, professional education scene, no invasive procedures.. Contemporary Indian healthcare setting, natural daylight, realistic skin texture and hands, editorial candid photography, subtle navy and teal accents, reassuring professional mood. Keep the important people and objects within the central 80 percent for responsive cropping. No text, logos, watermarks, named hospitals or real identities. Fictional representative people, not actual staff.",
+      "source": "/Users/asjadmac/.codex/generated_images/01a20e93-3306-7cb2-a0be-9621461f1936/exec-a1486f5c-4d2e-4dd3-852b-e11ec27ba603.png",
+      "final": "public/images/pages/nursing-staffing.webp",
+      "original": "output/healthcare-images/originals/nursing-staffing.png"
+    },
+    {
+      "slug": "patient-care-coordination",
+      "prompt": "Use case: photorealistic-natural. Asset type: landscape 3:2 healthcare website hero photograph. Scene: A compassionate Indian nurse and an older female patient with her adult daughter reviewing a recovery plan together at a small table in a peaceful outpatient consultation area. The patient wears everyday clothing, seated comfortably, not in distress. Collaborative supportive conversation, no readable documents.. Contemporary Indian healthcare setting, natural daylight, realistic skin texture and hands, editorial candid photography, subtle navy and teal accents, reassuring professional mood. Keep important people and objects comfortably within central 80 percent for responsive cropping. No text, logos, watermarks, named hospitals, fake credentials, or real identities. Fictional representative people, not actual staff.",
+      "source": "/Users/asjadmac/.codex/generated_images/01a20e93-3306-7cb2-a0be-9621461f1936/exec-d8db29be-4bb0-4a78-99ea-58c9c2364353.png",
+      "final": "public/images/pages/patient-care-coordination.webp",
+      "original": "output/healthcare-images/originals/patient-care-coordination.png"
+    },
+    {
+      "slug": "privacy-policy",
+      "prompt": "Use case: photorealistic-natural. Asset type: landscape 3:2 healthcare website hero photograph. Scene: An Indian doctor privately reviewing a closed-angle laptop at an orderly clinical office desk, the computer screen turned away from the camera. A discreet document folder and stethoscope nearby. Thoughtful secure medical record handling, human and approachable, no floating digital symbols or readable personal data.. Contemporary Indian healthcare setting, natural daylight, realistic skin texture and hands, editorial candid photography, subtle navy and teal accents, reassuring professional mood. Keep important people and objects comfortably within central 80 percent for responsive cropping. No text, logos, watermarks, named hospitals, fake credentials, or real identities. Fictional representative people, not actual staff.",
+      "source": "/Users/asjadmac/.codex/generated_images/01a20e93-3306-7cb2-a0be-9621461f1936/exec-9351f91a-b898-4790-be5e-36dc60615982.png",
+      "final": "public/images/pages/privacy-policy.webp",
+      "original": "output/healthcare-images/originals/privacy-policy.png"
+    },
+    {
+      "slug": "services",
+      "prompt": "Use case: photorealistic-natural. Asset type: landscape 3:2 healthcare website hero photograph. Scene: A multidisciplinary group of four Indian healthcare professionals, doctor, nurse in teal scrubs, physiotherapist and clinical administrator, in a relaxed collaborative discussion in a bright contemporary hospital corridor. Candid medium-wide editorial scene, varied ages and genders, no posed lineup.. Contemporary Indian healthcare setting, natural daylight, realistic skin texture and hands, editorial candid photography, subtle navy and teal accents, reassuring professional mood. Keep important people and objects comfortably within central 80 percent for responsive cropping. No text, logos, watermarks, named hospitals, fake credentials, or real identities. Fictional representative people, not actual staff.",
+      "source": "/Users/asjadmac/.codex/generated_images/01a20e93-3306-7cb2-a0be-9621461f1936/exec-5ed1314f-860b-49d3-9ab8-1057938188da.png",
+      "final": "public/images/pages/services.webp",
+      "original": "output/healthcare-images/originals/services.png"
+    },
+    {
+      "slug": "surgery-packages",
+      "prompt": "Use case: photorealistic-natural. Asset type: landscape 3:2 healthcare website hero photograph. Scene: An Indian surgeon in clean navy scrubs, without surgical mask, explaining an unlabelled treatment cost planning folder to an adult patient and companion in a calm private consultation office. Eye-level reassuring conversation, no operation, no wounds, no needles, no readable paperwork.. Contemporary Indian healthcare setting, natural daylight, realistic skin texture and hands, editorial candid photography, subtle navy and teal accents, reassuring professional mood. Keep important people and objects comfortably within central 80 percent for responsive cropping. No text, logos, watermarks, named hospitals, fake credentials, or real identities. Fictional representative people, not actual staff.",
+      "source": "/Users/asjadmac/.codex/generated_images/01a20e93-3306-7cb2-a0be-9621461f1936/exec-3360cf7a-38cd-4b0b-9f58-42ae48734c1e.png",
+      "final": "public/images/pages/surgery-packages.webp",
+      "original": "output/healthcare-images/originals/surgery-packages.png"
+    },
+    {
+      "slug": "terms-and-conditions",
+      "prompt": "Use case: photorealistic-natural. Asset type: landscape 3:2 healthcare website hero photograph. Scene: An Indian female physician in a white coat explaining a blank consent document to an attentive adult male patient seated across her desk. A pen placed beside the paper, doctor gesturing naturally while listening. Calm modern consultation room, shared understanding and transparent communication, no readable words.. Contemporary Indian healthcare setting, natural daylight, realistic skin texture and hands, editorial candid photography, subtle navy and teal accents, reassuring professional mood. Keep important people and objects comfortably within central 80 percent for responsive cropping. No text, logos, watermarks, named hospitals, fake credentials, or real identities. Fictional representative people, not actual staff.",
+      "source": "/Users/asjadmac/.codex/generated_images/01a20e93-3306-7cb2-a0be-9621461f1936/exec-9cff6e3d-8024-4111-b820-190c55ae40f4.png",
+      "final": "public/images/pages/terms-and-conditions.webp",
+      "original": "output/healthcare-images/originals/terms-and-conditions.png"
+    },
+    {
+      "slug": "vision-and-mission",
+      "prompt": "Use case: photorealistic-natural. Asset type: landscape 3:2 healthcare website hero photograph. Scene: An Indian doctor and nurse offering a friendly community health conversation to two adult community members in the shaded outdoor courtyard of a modern neighborhood clinic, lush green plants and morning light. Collaborative accessible healthcare, respectful people at eye level, no crowd or charity stereotypes.. Contemporary Indian healthcare setting, natural daylight, realistic skin texture and hands, editorial candid photography, subtle navy and teal accents, reassuring professional mood. Keep important people and objects comfortably within central 80 percent for responsive cropping. No text, logos, watermarks, named hospitals, fake credentials, or real identities. Fictional representative people, not actual staff.",
+      "source": "/Users/asjadmac/.codex/generated_images/01a20e93-3306-7cb2-a0be-9621461f1936/exec-51360245-aea7-4601-bc09-d84aa0b30e7b.png",
+      "final": "public/images/pages/vision-and-mission.webp",
+      "original": "output/healthcare-images/originals/vision-and-mission.png"
+    },
+    {
+      "slug": "home",
+      "prompt": "Use case: photorealistic-natural. Asset type: landscape 3:2 healthcare website hero photograph. Scene: A warm Indian female doctor in her forties with a stethoscope talking reassuringly with a relaxed adult woman in a bright contemporary consultation room. A male nurse in teal scrubs is softly visible in the background near the doorway. Natural candid connection, gently smiling, clean clinical setting.. Contemporary Indian healthcare setting, natural daylight, realistic skin texture and hands, editorial candid photography, subtle navy and teal accents, reassuring professional mood. Keep important people and objects comfortably within central 80 percent for responsive cropping. No text, logos, watermarks, named hospitals, fake credentials, or real identities. Fictional representative people, not actual staff.",
+      "source": "/Users/asjadmac/.codex/generated_images/01a20e93-3306-7cb2-a0be-9621461f1936/exec-72698602-35ad-4370-81df-05f0908443a3.png",
+      "final": "public/images/pages/home.webp",
+      "original": "output/healthcare-images/originals/home.png"
+    },
+    {
+      "slug": "admin-enquiries",
+      "prompt": "Use case: photorealistic-natural. Asset type: landscape 3:2 healthcare website hero photograph. Scene: An Indian healthcare care-coordination professional in navy attire wearing a small headset and working at a tidy reception workstation, with a monitor angled away so no information is visible. A clinician in teal scrubs walks in the softly focused hospital background. Thoughtful service desk atmosphere, natural human expression.. Contemporary Indian healthcare setting, natural daylight, realistic skin texture and hands, editorial candid photography, subtle navy and teal accents, reassuring professional mood. Keep important people and objects comfortably within central 80 percent for responsive cropping. No text, logos, watermarks, named hospitals, fake credentials, or real identities. Fictional representative people, not actual staff.",
+      "source": "/Users/asjadmac/.codex/generated_images/01a20e93-3306-7cb2-a0be-9621461f1936/exec-bc2b8385-c121-4550-aa2f-1737d96537ed.png",
+      "final": "public/images/pages/admin-enquiries.webp",
+      "original": "output/healthcare-images/originals/admin-enquiries.png"
+    }
+  ]
+}

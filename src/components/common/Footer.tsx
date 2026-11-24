@@ -1,150 +1,61 @@
-import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { 
-  Mail, 
-  Phone, 
-  MapPin, 
-  ShieldCheck, 
-  Globe2, 
-  ArrowUpRight 
-} from "lucide-react";
-import { FOOTER_LINKS } from "@/data/navigation";
+import { Mail, Phone } from "lucide-react";
+
+const footerLinks = [
+  { label: "Home", href: "/" },
+  { label: "About Us", href: "/about-us" },
+  { label: "Our Services", href: "/services" },
+  { label: "For Businesses", href: "/corporate-healthcare" },
+  { label: "For Patients", href: "/find-treatment" },
+  { label: "International Patients", href: "/international-patients" },
+  { label: "Careers", href: "/careers" },
+  { label: "Contact", href: "/contact-us" },
+];
 
 export default function Footer() {
   return (
-    <footer className="bg-[#061226] text-slate-300 pt-16 pb-12 border-t border-slate-800">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Main Footer Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-8 pb-12 border-b border-slate-800">
-          {/* Brand & Corporate Overview */}
-          <div className="lg:col-span-2 space-y-4">
-            <div className="space-y-2">
-              <Link href="/" className="inline-block">
-                <div className="relative h-12 w-48 sm:w-52 bg-white px-3 py-1 rounded-2xl shadow-sm">
-                  <Image
-                    src="/images/dr-all-care-logo.png"
-                    alt="Dr. AllCare - We Care Always For You"
-                    fill
-                    className="object-contain p-1"
-                  />
-                </div>
+    <footer className="site-footer relative isolate overflow-hidden px-4 pb-5 pt-8 text-teal-50 sm:px-6 sm:pt-10 lg:px-8">
+      <div className="relative mx-auto max-w-7xl">
+        <div className="footer-glass rounded-[28px] p-6 sm:p-8">
+          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-[1fr_1.3fr_1fr] lg:gap-10">
+            <div>
+              <Link href="/" aria-label="Dr. AllCare home" className="inline-flex transition hover:-translate-y-0.5">
+                <Image src="/images/dr-all-care-logo-footer.svg" alt="Dr. AllCare" width={172} height={72} className="h-[72px] w-[172px] object-contain" />
               </Link>
-              <div className="text-teal-400 font-bold text-xs tracking-wider uppercase">
-                We Care Always For You
-              </div>
+              <p className="mt-4 text-lg font-semibold tracking-tight text-white">We care. Always for you.</p>
+              <p className="mt-2 max-w-[26ch] text-sm leading-6 text-teal-50">Connecting you to better healthcare.</p>
             </div>
-
-            <p className="text-sm text-slate-400 leading-relaxed max-w-md">
-              Dr. AllCare is an enterprise healthcare management and solutions platform headquartered in India. 
-              We deliver institutional hospital operations, industrial occupational health, certified medical 
-              workforce staffing, turnkey hospital setup consultancy, and structured domestic & international 
-              patient treatment coordination.
-            </p>
-
-            <div className="pt-2 space-y-2 text-xs text-slate-400">
-              <div className="flex items-start gap-2.5">
-                <MapPin className="w-4 h-4 text-teal-400 flex-shrink-0 mt-0.5" />
-                <span>Headquarters: Plot No 284, Sector 6, Pocket 5, Jasola Vihar, New Delhi, Delhi 110025</span>
-              </div>
-              <div className="flex items-center gap-2.5">
-                <Phone className="w-4 h-4 text-teal-400 flex-shrink-0" />
-                <a href="tel:+917050011164" className="hover:text-white transition-colors">
-                  Mobile / Helpline: +91 7050011164
+            <nav aria-label="Footer navigation">
+              <h2 className="mb-3 text-sm font-semibold text-white">Explore Dr. AllCare</h2>
+              <ul className="grid grid-cols-2 gap-x-5 gap-y-0.5">
+                {footerLinks.map((item) => (
+                  <li key={item.href}>
+                    <Link href={item.href} className="inline-flex min-h-11 items-center py-2 text-sm leading-5 text-teal-50 transition-colors hover:text-white hover:underline underline-offset-4">{item.label}</Link>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+            <div className="md:col-span-2 lg:col-span-1">
+              <h2 className="mb-3 text-sm font-semibold text-white">Let’s connect</h2>
+              <address className="space-y-2 not-italic">
+                <a href="tel:+917050011164" className="footer-contact flex min-h-12 items-center gap-3 rounded-2xl px-4 py-3 text-sm text-white transition-colors">
+                  <Phone className="h-4 w-4 shrink-0 text-teal-200" aria-hidden="true" />
+                  <span>+91 70500 11164</span>
                 </a>
-              </div>
-              <div className="flex items-center gap-2.5">
-                <Mail className="w-4 h-4 text-teal-400 flex-shrink-0" />
-                <span>Corporate Enquiries: solutions@drallcare.com</span>
-              </div>
+                <a href="mailto:solutions@drallcare.com" className="footer-contact flex min-h-12 items-center gap-3 rounded-2xl px-4 py-3 text-sm text-white transition-colors">
+                  <Mail className="h-4 w-4 shrink-0 text-teal-200" aria-hidden="true" />
+                  <span className="break-all">solutions@drallcare.com</span>
+                </a>
+              </address>
             </div>
           </div>
-
-          {/* Solutions Column */}
-          <div className="space-y-3">
-            <h4 className="text-xs font-bold uppercase tracking-wider text-teal-400">
-              B2B & Hospital Solutions
-            </h4>
-            <ul className="space-y-2 text-sm">
-              {FOOTER_LINKS.solutions.map((item) => (
-                <li key={item.label}>
-                  <Link 
-                    href={item.href} 
-                    className="text-slate-400 hover:text-white transition flex items-center gap-1 group"
-                  >
-                    <span>{item.label}</span>
-                    <ArrowUpRight className="w-3 h-3 text-slate-600 opacity-0 group-hover:opacity-100 transition-opacity" />
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Patient Care Column */}
-          <div className="space-y-3">
-            <h4 className="text-xs font-bold uppercase tracking-wider text-teal-400">
-              Patient Care & Tourism
-            </h4>
-            <ul className="space-y-2 text-sm">
-              {FOOTER_LINKS.patients.map((item) => (
-                <li key={item.label}>
-                  <Link 
-                    href={item.href} 
-                    className="text-slate-400 hover:text-white transition flex items-center gap-1 group"
-                  >
-                    <span>{item.label}</span>
-                    <ArrowUpRight className="w-3 h-3 text-slate-600 opacity-0 group-hover:opacity-100 transition-opacity" />
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Company & Governance Column */}
-          <div className="space-y-3">
-            <h4 className="text-xs font-bold uppercase tracking-wider text-teal-400">
-              Governance & Company
-            </h4>
-            <ul className="space-y-2 text-sm">
-              {FOOTER_LINKS.company.map((item) => (
-                <li key={item.label}>
-                  <Link 
-                    href={item.href} 
-                    className="text-slate-400 hover:text-white transition flex items-center gap-1 group"
-                  >
-                    <span>{item.label}</span>
-                    <ArrowUpRight className="w-3 h-3 text-slate-600 opacity-0 group-hover:opacity-100 transition-opacity" />
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
         </div>
-
-        {/* Regulatory & Ethical Disclaimer Strip */}
-        <div className="py-6 border-b border-slate-800/80 text-xs text-slate-500 leading-relaxed space-y-2">
-          <div className="flex items-center gap-2 text-slate-400 font-medium">
-            <ShieldCheck className="w-4 h-4 text-teal-500" />
-            <span>Statutory Compliance & Clinical Boundaries Disclosure:</span>
-          </div>
-          <p>
-            Dr. AllCare Healthcare Solutions acts as an institutional management enterprise, healthcare staffing facilitator, 
-            and patient coordination partner. Clinical decisions, surgical procedures, and medical advice remain strictly 
-            the sovereign responsibility of registered, licensed medical practitioners and accredited clinical establishments 
-            registered under the Clinical Establishments Act and respective State Medical Councils. All patient data is managed 
-            in alignment with India&apos;s Digital Personal Data Protection (DPDP) Act.
-          </p>
-        </div>
-
-        {/* Copyright Bar */}
-        <div className="pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-4">
-          <p>© 2026 Dr. AllCare Healthcare Solutions Pvt. Ltd. All rights reserved. • Tagline: We Care Always For You</p>
-          <div className="flex items-center gap-6">
-            <Link href="/privacy-policy" className="hover:text-slate-400 transition">Privacy Policy</Link>
-            <Link href="/terms-and-conditions" className="hover:text-slate-400 transition">Terms of Service</Link>
-            <span className="flex items-center gap-1 text-teal-500">
-              <Globe2 className="w-3.5 h-3.5" /> India & Global Operations
-            </span>
+        <div className="flex flex-col gap-3 px-1 pt-5 text-xs leading-5 text-teal-50 sm:flex-row sm:items-center sm:justify-between">
+          <p>© 2026 Dr. AllCare Healthcare Solutions Pvt. Ltd.</p>
+          <div className="flex gap-5">
+            <Link href="/privacy-policy" className="py-2 transition hover:text-white">Privacy Policy</Link>
+            <Link href="/terms-and-conditions" className="py-2 transition hover:text-white">Terms & Conditions</Link>
           </div>
         </div>
       </div>

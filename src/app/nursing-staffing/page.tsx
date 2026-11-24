@@ -11,7 +11,7 @@ export default function NursingStaffingPage() {
   const [modalOpen, setModalOpen] = useState(false);
 
   return (
-    <main className="min-h-screen flex flex-col bg-slate-50">
+    <main className="care-page min-h-screen flex flex-col">
       <Header onOpenModal={() => setModalOpen(true)} />
 
       <PageHeader
@@ -26,34 +26,34 @@ export default function NursingStaffingPage() {
         onCtaClick={() => setModalOpen(true)}
       />
 
-      <section className="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+      <section className="care-content py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 text-xs text-slate-600">
-          <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-2">
+          <div className="care-card p-6 rounded-2xl border border-slate-200 shadow-sm space-y-2">
             <h3 className="text-sm font-bold text-[#0A1E3F]">ICU & Critical Care Nurses</h3>
             <p className="leading-relaxed">Trained in mechanical ventilation, arterial blood gas (ABG) monitoring, central line care, and 1:1 patient-nurse protocols.</p>
           </div>
 
-          <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-2">
+          <div className="care-card p-6 rounded-2xl border border-slate-200 shadow-sm space-y-2">
             <h3 className="text-sm font-bold text-[#0A1E3F]">Operation Theatre (OT) Nurses</h3>
             <p className="leading-relaxed">Scrub nurses and circulating nurses adept at aseptic techniques, laparoscopic stack management, and surgical inventory counts.</p>
           </div>
 
-          <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-2">
+          <div className="care-card p-6 rounded-2xl border border-slate-200 shadow-sm space-y-2">
             <h3 className="text-sm font-bold text-[#0A1E3F]">Dialysis Technicians</h3>
             <p className="leading-relaxed">Experienced hemodialysis machine operators with vascular access cannulation and dialyzer reuse protocol certification.</p>
           </div>
 
-          <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-2">
+          <div className="care-card p-6 rounded-2xl border border-slate-200 shadow-sm space-y-2">
             <h3 className="text-sm font-bold text-[#0A1E3F]">Radiology Technologists</h3>
             <p className="leading-relaxed">AERB-certified MRI, CT scan, digital X-ray, and C-arm technologists operating advanced diagnostic modalities.</p>
           </div>
 
-          <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-2">
+          <div className="care-card p-6 rounded-2xl border border-slate-200 shadow-sm space-y-2">
             <h3 className="text-sm font-bold text-[#0A1E3F]">Laboratory Technicians</h3>
             <p className="leading-relaxed">NABL-compliant pathology, hematology, biochemistry, and microbiology technicians managing automated analyzers.</p>
           </div>
 
-          <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-2">
+          <div className="care-card p-6 rounded-2xl border border-slate-200 shadow-sm space-y-2">
             <h3 className="text-sm font-bold text-[#0A1E3F]">Hospital Administrators</h3>
             <p className="leading-relaxed">Trained MHA / MBA healthcare professionals overseeing patient admission desks, billing audit, and TPA desks.</p>
           </div>

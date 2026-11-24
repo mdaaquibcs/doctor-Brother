@@ -1,15 +1,15 @@
 "use client";
 
 import React, { useState } from "react";
-import Image from "next/image";
 import Header from "@/components/common/Header";
 import Footer from "@/components/common/Footer";
+import PageHeader from "@/components/common/PageHeader";
 import QuickEnquiryModal from "@/components/common/QuickEnquiryModal";
-import { 
-  Search, 
-  ArrowRight, 
-  Activity, 
-  CheckCircle2, 
+import {
+  Search,
+  ArrowRight,
+  Activity,
+  CheckCircle2,
   Sparkles,
   Shield
 } from "lucide-react";
@@ -97,7 +97,7 @@ export default function FindTreatmentPage() {
   );
 
   return (
-    <main className="min-h-screen flex flex-col bg-slate-50 selection:bg-teal-500 selection:text-white">
+    <main className="care-page min-h-screen flex flex-col selection:bg-teal-500 selection:text-white">
       {/* Global Header with For Patients active in navbar */}
       <Header 
         activeNav="For Patients" 
@@ -107,139 +107,18 @@ export default function FindTreatmentPage() {
       {/* ============================================================== */}
       {/* 1. HERO SECTION (Matches Screenshot Exactly)                   */}
       {/* ============================================================== */}
-      <section className="relative w-full bg-gradient-to-b from-white via-sky-50/25 to-[#EBF6F8] overflow-hidden pt-6 pb-12 sm:pb-16 border-b border-teal-100/60">
-        
-        {/* Soft Decorative Ambient Plus Signs */}
-        <div className="absolute inset-0 pointer-events-none select-none overflow-hidden">
-          <span className="absolute top-12 left-1/4 text-cyan-200/50 font-black text-4xl">+</span>
-          <span className="absolute top-28 right-1/3 text-teal-200/50 font-black text-3xl">+</span>
-          <span className="absolute bottom-16 left-12 text-blue-200/40 font-black text-5xl">+</span>
-          <span className="absolute top-1/2 right-12 text-teal-300/40 font-black text-4xl">+</span>
-        </div>
-
-        {/* Ambient Flowing Turquoise Waves */}
-        <div className="absolute -bottom-1 left-0 right-0 h-16 sm:h-20 pointer-events-none overflow-hidden">
-          <svg className="w-full h-full text-teal-500/10" viewBox="0 0 1440 100" fill="currentColor" preserveAspectRatio="none">
-            <path d="M0,32L60,42.7C120,53,240,75,360,69.3C480,64,600,32,720,26.7C840,21,960,43,1080,53.3C1200,64,1320,64,1380,64L1440,64L1440,100L1380,100C1320,100,1200,100,1080,100C960,100,840,100,720,100C600,100,480,100,360,100C240,100,120,100,60,100L0,100Z" />
-          </svg>
-        </div>
-
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-            
-            {/* Left Content Column */}
-            <div className="lg:col-span-5 space-y-4">
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-[1.12]">
-                <span className="text-[#0A1E3F] block">Welcome to Dr. AllCare</span>
-                <span className="text-[#009688] block mt-1">Healthcare Solutions</span>
-                <span className="text-[#0A1E3F] text-2xl sm:text-3xl lg:text-4xl font-extrabold block mt-2">
-                  We Care Always For You
-                </span>
-              </h1>
-
-              <p className="text-slate-600 text-xs sm:text-sm md:text-base max-w-md leading-relaxed font-normal pt-1">
-                Book appointments, manage your health, and stay healthy always.
-              </p>
-
-              <div className="pt-2">
-                <button
-                  onClick={() => {
-                    const searchEl = document.getElementById("treatment-search-input");
-                    searchEl?.focus();
-                  }}
-                  className="bg-[#0A1E3F] hover:bg-[#132A54] text-white px-7 py-3 rounded-full text-xs sm:text-sm font-bold inline-flex items-center gap-2.5 shadow-md shadow-navy-900/10 transition-all hover:scale-[1.02]"
-                >
-                  <span>Find Treatment</span>
-                  <ArrowRight className="w-4 h-4" />
-                </button>
-              </div>
-            </div>
-
-            {/* Center 3D Glowing Shield Visual */}
-            <div className="lg:col-span-3 flex items-center justify-center relative py-4 lg:py-0">
-              <div className="relative w-44 h-48 sm:w-52 sm:h-56 flex items-center justify-center">
-                {/* Orbital Cyan Glow Ring */}
-                <div className="absolute inset-0 rounded-full border-2 border-cyan-400/40 -rotate-12 scale-110 pointer-events-none animate-pulse"></div>
-                
-                {/* 3D Glossy Shield with Medical Cross */}
-                <svg className="w-full h-full drop-shadow-2xl" viewBox="0 0 200 240" fill="none">
-                  <defs>
-                    <linearGradient id="shieldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                      <stop offset="0%" stopColor="#38BDF8" />
-                      <stop offset="40%" stopColor="#0284C7" />
-                      <stop offset="100%" stopColor="#0369A1" />
-                    </linearGradient>
-                    <linearGradient id="shieldRim" x1="0%" y1="0%" x2="0%" y2="100%">
-                      <stop offset="0%" stopColor="#BAE6FD" />
-                      <stop offset="50%" stopColor="#0284C7" />
-                      <stop offset="100%" stopColor="#0C4A6E" />
-                    </linearGradient>
-                    <linearGradient id="crossGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                      <stop offset="0%" stopColor="#FFFFFF" />
-                      <stop offset="100%" stopColor="#F0FDFA" />
-                    </linearGradient>
-                    <filter id="shieldGlow" x="-20%" y="-20%" width="140%" height="140%">
-                      <feDropShadow dx="0" dy="12" stdDeviation="14" floodColor="#0284C7" floodOpacity="0.4" />
-                    </filter>
-                  </defs>
-
-                  {/* Outer Rim */}
-                  <path 
-                    d="M100 15 C145 15 185 30 185 85 C185 150 140 205 100 225 C60 205 15 150 15 85 C15 30 55 15 100 15 Z" 
-                    fill="url(#shieldRim)"
-                    filter="url(#shieldGlow)"
-                  />
-                  {/* Inner Glossy Body */}
-                  <path 
-                    d="M100 24 C140 24 174 38 174 88 C174 145 133 195 100 213 C67 195 26 145 26 88 C26 38 60 24 100 24 Z" 
-                    fill="url(#shieldGrad)"
-                  />
-                  {/* Light Reflection Highlight */}
-                  <path 
-                    d="M100 24 C135 24 165 36 168 80 C150 90 120 70 85 95 C55 120 40 100 28 85 C32 42 65 24 100 24 Z" 
-                    fill="white" 
-                    opacity="0.28"
-                  />
-                  {/* White Medical Cross */}
-                  <path 
-                    d="M86 62 H114 V90 H142 V118 H114 V146 H86 V118 H58 V90 H86 V62 Z" 
-                    fill="url(#crossGrad)" 
-                    filter="drop-shadow(0 4px 6px rgba(0,0,0,0.18))"
-                  />
-                </svg>
-              </div>
-            </div>
-
-            {/* Right Doctor Visual Column */}
-            <div className="lg:col-span-4 flex justify-center lg:justify-end">
-              <div className="relative w-full max-w-sm h-64 sm:h-72 md:h-80 rounded-3xl overflow-hidden shadow-xl border-4 border-white group">
-                <Image
-                  src="/images/medical-team.jpg"
-                  alt="Dr. AllCare Healthcare Specialist Doctor"
-                  fill
-                  className="object-cover object-[75%_20%] group-hover:scale-105 transition-transform duration-700"
-                  priority
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0A1E3F]/40 via-transparent to-transparent"></div>
-
-                {/* Floating Accreditation Pill */}
-                <div className="absolute bottom-3 left-3 bg-white/95 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-teal-100 shadow-sm flex items-center gap-2">
-                  <div className="w-2 h-2 rounded-full bg-teal-500 animate-pulse"></div>
-                  <span className="text-[11px] font-bold text-[#0A1E3F]">
-                    Verified Specialist Doctors & Surgeons
-                  </span>
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </section>
+      <PageHeader
+        breadcrumb={[{ label: "For Patients" }]}
+        ctaLabel="Find treatment"
+        onCtaClick={() => document.getElementById("treatment-search-input")?.focus()}
+        secondaryLabel="Talk to our team"
+        onSecondaryClick={() => setModalOpen(true)}
+      />
 
       {/* ============================================================== */}
       {/* 2. SEARCH & REQUEST QUOTE BAR (Floating Pill Card)             */}
       {/* ============================================================== */}
-      <section className="relative z-20 -mt-6 sm:-mt-7 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+      <section className="care-content relative z-20 -mt-6 sm:-mt-7 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         <div className="bg-white rounded-2xl sm:rounded-full border border-slate-200/90 shadow-xl p-2 sm:p-2.5 flex flex-col sm:flex-row items-center gap-3">
           
           {/* Input field */}
@@ -278,7 +157,7 @@ export default function FindTreatmentPage() {
       {/* ============================================================== */}
       {/* 3. 3 SUPER-SPECIALTY CARDS (Cardiac, Oncology, Orthopedics)    */}
       {/* ============================================================== */}
-      <section className="py-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+      <section className="care-content py-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
 
           {/* ------------------------------------------------------------ */}
@@ -574,7 +453,7 @@ export default function FindTreatmentPage() {
         {/* Additional Filtered Search Results (if searching)              */}
         {/* ============================================================== */}
         {search && (
-          <div className="mt-12 bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/90 shadow-sm space-y-6">
+          <div className="care-card mt-12  rounded-3xl p-6 sm:p-8 border border-slate-200/90 shadow-sm space-y-6">
             <div className="flex items-center justify-between border-b border-slate-100 pb-4">
               <h3 className="text-base sm:text-lg font-bold text-[#0A1E3F]">
                 Matching Treatments & Procedures ({filtered.length})

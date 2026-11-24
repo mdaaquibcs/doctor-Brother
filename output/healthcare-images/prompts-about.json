@@ -1,0 +1,11 @@
+{
+  "generator": "built-in image_gen",
+  "entries": [
+    {
+      "slug": "about-us",
+      "prompt": "Use case: photorealistic-natural. Generate a landscape 3:2 editorial healthcare website hero photograph for an About Us page. An Indian female physician, male nurse in teal scrubs, and hospital administrator having a warm, candid team discussion in a bright contemporary hospital reception. Natural daylight, subtle navy and teal accents, realistic skin and hands, professional and welcoming. Subjects composed comfortably within center 80% for responsive cropping. No text, logos, watermark, fake credentials, or named hospitals. This is an illustrative fictional team, not a portrait of real staff.",
+      "original": "output/healthcare-images/about-us.png",
+      "final": "public/images/pages/about-us.webp"
+    }
+  ]
+}

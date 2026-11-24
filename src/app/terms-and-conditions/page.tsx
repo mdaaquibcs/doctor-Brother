@@ -1,14 +1,17 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Header from "@/components/common/Header";
 import Footer from "@/components/common/Footer";
+import QuickEnquiryModal from "@/components/common/QuickEnquiryModal";
 import PageHeader from "@/components/common/PageHeader";
 
 export default function TermsConditionsPage() {
+  const [modalOpen, setModalOpen] = useState(false);
+
   return (
-    <main className="min-h-screen flex flex-col bg-slate-50">
-      <Header />
+    <main className="care-page min-h-screen flex flex-col">
+      <Header onOpenModal={() => setModalOpen(true)} />
 
       <PageHeader
         badge="Legal & Terms"
@@ -17,7 +20,7 @@ export default function TermsConditionsPage() {
         breadcrumb={[{ label: "Terms & Conditions" }]}
       />
 
-      <section className="py-16 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 text-xs sm:text-sm text-slate-700 leading-relaxed bg-white my-10 p-8 sm:p-12 rounded-3xl border border-slate-200/90 shadow-sm">
+      <section className="care-card care-content py-16 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 text-xs sm:text-sm text-slate-700 leading-relaxed  my-10 p-8 sm:p-12 rounded-3xl border border-slate-200/90 shadow-sm">
         <div className="space-y-2">
           <h2 className="text-lg font-bold text-[#0A1E3F]">1. Institutional & Facilitation Boundaries</h2>
           <p>
@@ -54,6 +57,7 @@ export default function TermsConditionsPage() {
       </section>
 
       <Footer />
+      <QuickEnquiryModal isOpen={modalOpen} onClose={() => setModalOpen(false)} />
     </main>
   );
 }

@@ -12,7 +12,7 @@ export default function CorporatePartnershipsPage() {
   const [modalOpen, setModalOpen] = useState(false);
 
   return (
-    <main className="min-h-screen flex flex-col bg-slate-50">
+    <main className="care-page min-h-screen flex flex-col">
       <Header onOpenModal={() => setModalOpen(true)} />
 
       <PageHeader
@@ -29,8 +29,8 @@ export default function CorporatePartnershipsPage() {
 
       <CorporatePartnershipSection onOpenModal={() => setModalOpen(true)} />
 
-      <section className="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-white rounded-3xl p-8 border border-slate-200/90 shadow-sm space-y-6">
+      <section className="care-content py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="care-card rounded-3xl p-8 border border-slate-200/90 shadow-sm space-y-6">
           <div className="border-b border-slate-100 pb-4">
             <span className="text-xs font-bold text-teal-700 uppercase tracking-wider">
               Partnership Models

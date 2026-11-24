@@ -61,16 +61,86 @@
   animation: pulse-subtle 3s infinite ease-in-out;
 }
 
-/* Glassmorphism for corporate cards */
+/* Shared frosted surfaces. Opaque fallbacks keep text readable without blur. */
+.care-surface {
+  background:
+    radial-gradient(ellipse at 8% 40%, #dff4f1 0, transparent 45%),
+    radial-gradient(ellipse at 95% 65%, #e4effc 0, transparent 45%),
+    #f5f9fc;
+}
+
+.care-hero {
+  background:
+    radial-gradient(ellipse at 75% 25%, rgb(167 232 227 / 35%), transparent 55%),
+    linear-gradient(125deg, #f9fcff, #edf6fb 50%, #e9f6f3);
+}
+
+.glass-header {
+  background: #f5fafc;
+  box-shadow: 0 4px 24px rgb(10 30 63 / 5%), inset 0 -1px 0 rgb(255 255 255 / 70%);
+}
+
 .glass-panel {
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  background: #f8fcfd;
+  border-color: rgb(255 255 255 / 90%);
+  box-shadow: 0 8px 28px rgb(18 62 90 / 6%), inset 0 1px 0 #fff;
 }
 
 .glass-panel-dark {
-  background: rgba(10, 30, 63, 0.85);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: linear-gradient(115deg, #102943, #17434e);
+  border: 1px solid rgb(255 255 255 / 20%);
+  box-shadow: 0 16px 40px rgb(10 30 63 / 12%), inset 0 1px 0 rgb(255 255 255 / 18%);
+}
+
+.glass-service-card:hover {
+  border-color: #a5dcd5;
+  box-shadow: 0 14px 32px rgb(18 62 90 / 10%), inset 0 1px 0 #fff;
+}
+
+.site-footer {
+  background: linear-gradient(120deg, #0f766e, #0d8278 48%, #115e59);
+  border-top: 1px solid #14958a;
+}
+
+.footer-glass {
+  background: #0f766e;
+  border: 1px solid rgb(204 251 241 / 25%);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 10%), 0 12px 32px rgb(4 47 46 / 8%);
+}
+
+.footer-contact {
+  background: rgb(4 47 46 / 12%);
+  border: 1px solid rgb(204 251 241 / 24%);
+}
+
+.footer-contact:hover {
+  background: rgb(94 234 212 / 10%);
+  border-color: rgb(94 234 212 / 30%);
+}
+
+.site-footer a:focus-visible {
+  outline: 2px solid #5eead4;
+  outline-offset: 5px;
+  border-radius: 8px;
+}
+
+@supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .glass-header,
+  .glass-panel,
+  .glass-panel-dark,
+  .footer-glass {
+    -webkit-backdrop-filter: blur(18px);
+    backdrop-filter: blur(18px);
+  }
+
+  .glass-header { background: rgb(255 255 255 / 78%); }
+  .glass-panel { background: linear-gradient(135deg, rgb(255 255 255 / 86%), rgb(255 255 255 / 64%)); }
+  .glass-panel-dark { background: linear-gradient(115deg, rgb(10 30 63 / 95%), rgb(17 65 76 / 93%)); }
+  .footer-glass { background: linear-gradient(115deg, rgb(6 78 59 / 15%), rgb(4 47 46 / 18%)); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .glass-service-card { transition: none; }
+  .glass-service-card:hover { transform: none; }
 }

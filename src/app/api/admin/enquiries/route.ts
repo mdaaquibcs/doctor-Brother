@@ -1,154 +1,76 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextRequest } from "next/server";
+import { z } from "zod";
 import { createAdminClient } from "@/lib/supabase/admin";
-import { getLocalEnquiries } from "@/lib/db/localStore";
+import { getLocalEnquiries, updateLocalEnquiry } from "@/lib/db/localStore";
+import { adminJson, authorizeAdmin, isSameOrigin } from "@/lib/admin/auth";
+import { BUSINESS_STATUSES, PATIENT_STATUSES, PRIORITIES } from "@/lib/admin/enquiry-options";
+export const runtime = "nodejs";
+
+function cloudConfigured() {
+  const url = process.env.NEXT_PUBLIC_SUPABASE_URL || "";
+  const key = process.env.SUPABASE_SERVICE_ROLE_KEY || "";
+  return Boolean(url && key) && !/placeholder|your-project/i.test(url) && !/placeholder|your-service/i.test(key);
+}
 
 export async function GET(request: NextRequest) {
   try {
-    const { searchParams } = new URL(request.url);
-    const filter = searchParams.get("filter") || "all";
-
-    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-    const isConfigured =
-      Boolean(supabaseUrl) &&
-      !supabaseUrl?.includes("placeholder-project-id") &&
-      Boolean(process.env.SUPABASE_SERVICE_ROLE_KEY) &&
-      !process.env.SUPABASE_SERVICE_ROLE_KEY?.includes("placeholder");
-
+    if (!await authorizeAdmin(request)) return adminJson({ error: "Please sign in to continue." }, 401);
+    const isConfigured = cloudConfigured();
+    let business, patients;
     if (!isConfigured) {
-      // Read from local persistent database engine
-      const localData = await getLocalEnquiries();
-      let business = localData.business || [];
-      let patients = localData.patients || [];
-
-      if (filter === "new") {
-        business = business.filter((b) => b.status === "new");
-        patients = patients.filter((p) => p.status === "new");
-      }
-
-      const stats = {
-        totalBusiness: business.length,
-        totalPatients: patients.length,
-        pendingReview:
-          business.filter((b) => b.status === "new").length +
-          patients.filter((p) => p.status === "new").length,
-      };
-
-      return NextResponse.json({
-        isConfigured: false,
-        storageMode: "local_database",
-        message:
-          "Currently running on Local Persistent Database. To switch to Cloud PostgreSQL, add your Supabase credentials in .env.local.",
-        business,
-        patients,
-        stats,
-      });
+      const local = await getLocalEnquiries();
+      business = local.business;
+      patients = local.patients;
+    } else {
+      const supabase = createAdminClient();
+      const [b, p] = await Promise.all([
+        supabase.from("business_enquiries").select("*").order("created_at", { ascending: false }),
+        supabase.from("patient_enquiries").select("*").order("created_at", { ascending: false }),
+      ]);
+      if (b.error || p.error) return adminJson({ error: "Unable to load enquiries. Please try again." }, 500);
+      business = b.data || [];
+      patients = p.data || [];
     }
-
-    const supabase = createAdminClient();
-
-    let businessQuery = supabase
-      .from("business_enquiries")
-      .select("*")
-      .order("created_at", { ascending: false });
-
-    let patientQuery = supabase
-      .from("patient_enquiries")
-      .select("*")
-      .order("created_at", { ascending: false });
-
-    if (filter === "new") {
-      businessQuery = businessQuery.eq("status", "new");
-      patientQuery = patientQuery.eq("status", "new");
-    }
-
-    const [businessRes, patientRes] = await Promise.all([
-      businessQuery,
-      patientQuery,
-    ]);
-
-    if (businessRes.error) {
-      return NextResponse.json(
-        { error: businessRes.error.message },
-        { status: 500 }
-      );
-    }
-    if (patientRes.error) {
-      return NextResponse.json(
-        { error: patientRes.error.message },
-        { status: 500 }
-      );
-    }
-
-    const businessData = businessRes.data || [];
-    const patientData = patientRes.data || [];
-
+    // Summary counts cover all enquiries, independent of the selected view.
     const stats = {
-      totalBusiness: businessData.length,
-      totalPatients: patientData.length,
-      pendingReview:
-        businessData.filter((b) => b.status === "new").length +
-        patientData.filter((p) => p.status === "new").length,
+      totalBusiness: business.length,
+      totalPatients: patients.length,
+      pendingReview: business.filter((b) => b.status === "new").length + patients.filter((p) => p.status === "new").length,
     };
-
-    return NextResponse.json({
-      isConfigured: true,
-      storageMode: "supabase_cloud",
-      business: businessData,
-      patients: patientData,
-      stats,
-    });
-  } catch (err: unknown) {
-    const message = err instanceof Error ? err.message : "Internal error";
-    return NextResponse.json({ error: message }, { status: 500 });
-  }
+    if (request.nextUrl.searchParams.get("filter") === "new") {
+      business = business.filter((b) => b.status === "new");
+      patients = patients.filter((p) => p.status === "new");
+    }
+    return adminJson({ business, patients, stats });
+  } catch { return adminJson({ error: "Unable to load enquiries. Please try again." }, 500); }
 }
+
+const updateSchema = z.object({
+  id: z.string().min(1).max(100),
+  type: z.enum(["business", "patient"]),
+  status: z.string().optional(),
+  priority: z.enum(PRIORITIES).optional(),
+}).strict().refine((value) => value.status !== undefined || value.priority !== undefined)
+  .refine((value) => value.status === undefined || (value.type === "business" ? [...BUSINESS_STATUSES] : [...PATIENT_STATUSES]).some((status) => status === value.status));
 
 export async function PATCH(request: NextRequest) {
   try {
-    const body = await request.json();
-    const { id, type, status, priority, notes } = body;
-
-    if (!id || !type) {
-      return NextResponse.json(
-        { error: "Missing required id or type field" },
-        { status: 400 }
-      );
+    if (!await authorizeAdmin(request)) return adminJson({ error: "Please sign in to continue." }, 401);
+    if (!isSameOrigin(request)) return adminJson({ error: "Invalid request origin." }, 403);
+    let body;
+    try { body = await request.json(); } catch { return adminJson({ error: "Invalid update." }, 400); }
+    const parsed = updateSchema.safeParse(body);
+    if (!parsed.success) return adminJson({ error: "Choose a valid enquiry, status and priority." }, 400);
+    const { id, type, status, priority } = parsed.data;
+    const updates: { status?: string; priority?: string } = {};
+    if (status !== undefined) updates.status = status;
+    if (priority !== undefined) updates.priority = priority;
+    if (!cloudConfigured()) {
+      const record = await updateLocalEnquiry(type, id, updates);
+      return record ? adminJson({ success: true, record }) : adminJson({ error: "Enquiry not found." }, 404);
     }
-
-    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-    const isConfigured =
-      Boolean(supabaseUrl) &&
-      !supabaseUrl?.includes("placeholder-project-id") &&
-      Boolean(process.env.SUPABASE_SERVICE_ROLE_KEY) &&
-      !process.env.SUPABASE_SERVICE_ROLE_KEY?.includes("placeholder");
-
-    if (isConfigured) {
-      const supabase = createAdminClient();
-      const tableName =
-        type === "business" ? "business_enquiries" : "patient_enquiries";
-
-      const updatePayload: Record<string, unknown> = {};
-      if (status) updatePayload.status = status;
-      if (priority) updatePayload.priority = priority;
-      if (notes) updatePayload.notes = notes;
-
-      const { data, error } = await supabase
-        .from(tableName)
-        .update(updatePayload)
-        .eq("id", id)
-        .select()
-        .single();
-
-      if (error) {
-        return NextResponse.json({ error: error.message }, { status: 500 });
-      }
-
-      return NextResponse.json({ success: true, record: data });
-    }
-
-    return NextResponse.json({ success: true, message: "Updated locally" });
-  } catch (err: unknown) {
-    const message = err instanceof Error ? err.message : "Internal error";
-    return NextResponse.json({ error: message }, { status: 500 });
-  }
+    const { data, error } = await createAdminClient().from(type === "business" ? "business_enquiries" : "patient_enquiries").update(updates).eq("id", id).select().maybeSingle();
+    if (error) return adminJson({ error: "Unable to save changes. Please try again." }, 500);
+    return data ? adminJson({ success: true, record: data }) : adminJson({ error: "Enquiry not found." }, 404);
+  } catch { return adminJson({ error: "Unable to save changes. Please try again." }, 500); }
 }

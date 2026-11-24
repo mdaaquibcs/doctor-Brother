@@ -62,7 +62,7 @@ export default function SurgeryPackagesPage() {
   ];
 
   return (
-    <main className="min-h-screen flex flex-col bg-slate-50">
+    <main className="care-page min-h-screen flex flex-col">
       <Header onOpenModal={() => setModalOpen(true)} />
 
       <PageHeader
@@ -77,10 +77,10 @@ export default function SurgeryPackagesPage() {
         onCtaClick={() => setModalOpen(true)}
       />
 
-      <section className="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+      <section className="care-content py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {packages.map((pkg, i) => (
-            <div key={i} className="bg-white rounded-3xl p-7 border border-slate-200/90 shadow-sm flex flex-col justify-between hover:shadow-md transition">
+            <div key={i} className="care-card rounded-3xl p-7 border border-slate-200/90 shadow-sm flex flex-col justify-between hover:shadow-md transition">
               <div className="space-y-4">
                 <div>
                   <h3 className="text-base font-bold text-[#0A1E3F]">{pkg.title}</h3>

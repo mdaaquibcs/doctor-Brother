@@ -11,7 +11,7 @@ export default function AboutUsPage() {
   const [modalOpen, setModalOpen] = useState(false);
 
   return (
-    <main className="min-h-screen flex flex-col bg-slate-50">
+    <main className="care-page min-h-screen flex flex-col">
       <Header onOpenModal={() => setModalOpen(true)} />
 
       <PageHeader
@@ -23,7 +23,7 @@ export default function AboutUsPage() {
         onCtaClick={() => setModalOpen(true)}
       />
 
-      <section className="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+      <section className="care-content py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
         {/* Company Overview */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
           <div className="lg:col-span-7 space-y-5">
@@ -46,12 +46,12 @@ export default function AboutUsPage() {
             </p>
 
             <div className="grid grid-cols-2 gap-4 pt-2">
-              <div className="p-4 bg-white rounded-2xl border border-slate-200 shadow-sm">
+              <div className="care-card p-4  rounded-2xl border border-slate-200 shadow-sm">
                 <div className="text-2xl font-black text-[#0A1E3F]">100%</div>
                 <div className="text-xs font-semibold text-slate-700 mt-1">NABH / NABL Standards</div>
                 <div className="text-[11px] text-slate-500 mt-0.5">Strict clinical quality adherence</div>
               </div>
-              <div className="p-4 bg-white rounded-2xl border border-slate-200 shadow-sm">
+              <div className="care-card p-4  rounded-2xl border border-slate-200 shadow-sm">
                 <div className="text-2xl font-black text-[#0A1E3F]">24/7/365</div>
                 <div className="text-xs font-semibold text-slate-700 mt-1">Emergency Operations</div>
                 <div className="text-[11px] text-slate-500 mt-0.5">National coordination desk</div>

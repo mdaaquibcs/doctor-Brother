@@ -11,7 +11,7 @@ export default function VisionMissionPage() {
   const [modalOpen, setModalOpen] = useState(false);
 
   return (
-    <main className="min-h-screen flex flex-col bg-slate-50">
+    <main className="care-page min-h-screen flex flex-col">
       <Header onOpenModal={() => setModalOpen(true)} />
 
       <PageHeader
@@ -26,11 +26,11 @@ export default function VisionMissionPage() {
         onCtaClick={() => setModalOpen(true)}
       />
 
-      <section className="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+      <section className="care-content py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           
           {/* Vision Box */}
-          <div className="bg-white p-8 sm:p-10 rounded-3xl border border-slate-200/90 shadow-sm space-y-4">
+          <div className="care-card p-8 sm:p-10 rounded-3xl border border-slate-200/90 shadow-sm space-y-4">
             <div className="w-12 h-12 rounded-2xl bg-teal-50 text-teal-600 flex items-center justify-center border border-teal-100">
               <Eye className="w-6 h-6" />
             </div>
@@ -45,7 +45,7 @@ export default function VisionMissionPage() {
           </div>
 
           {/* Mission Box */}
-          <div className="bg-white p-8 sm:p-10 rounded-3xl border border-slate-200/90 shadow-sm space-y-4">
+          <div className="care-card p-8 sm:p-10 rounded-3xl border border-slate-200/90 shadow-sm space-y-4">
             <div className="w-12 h-12 rounded-2xl bg-[#0A1E3F] text-teal-400 flex items-center justify-center">
               <Target className="w-6 h-6" />
             </div>

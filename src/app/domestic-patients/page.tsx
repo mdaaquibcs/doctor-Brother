@@ -11,7 +11,7 @@ export default function DomesticPatientsPage() {
   const [modalOpen, setModalOpen] = useState(false);
 
   return (
-    <main className="min-h-screen flex flex-col bg-slate-50">
+    <main className="care-page min-h-screen flex flex-col">
       <Header onOpenModal={() => setModalOpen(true)} />
 
       <PageHeader
@@ -26,9 +26,9 @@ export default function DomesticPatientsPage() {
         onCtaClick={() => setModalOpen(true)}
       />
 
-      <section className="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+      <section className="care-content py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
         {/* Real Example Walkthrough Card */}
-        <div className="bg-white rounded-3xl p-8 sm:p-10 border border-slate-200/90 shadow-sm space-y-6">
+        <div className="care-card rounded-3xl p-8 sm:p-10 border border-slate-200/90 shadow-sm space-y-6">
           <div className="border-b border-slate-100 pb-4">
             <span className="text-xs font-bold text-teal-700 uppercase tracking-wider">
               Operational Example
@@ -70,17 +70,17 @@ export default function DomesticPatientsPage() {
 
         {/* 6 Key Benefits */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-xs text-slate-600">
-          <div className="bg-white p-6 rounded-2xl border border-slate-200 space-y-2">
+          <div className="care-card p-6 rounded-2xl border border-slate-200 space-y-2">
             <div className="font-bold text-slate-900 text-sm">Zero Broker / Agent Commission</div>
             <p>Direct institutional relationship with accredited hospitals ensures authentic hospital billing with zero middleman markups.</p>
           </div>
 
-          <div className="bg-white p-6 rounded-2xl border border-slate-200 space-y-2">
+          <div className="care-card p-6 rounded-2xl border border-slate-200 space-y-2">
             <div className="font-bold text-slate-900 text-sm">Attendant Accommodation</div>
             <p>Clean, verified budget and standard guest house options near hospital campuses for family members and caretakers.</p>
           </div>
 
-          <div className="bg-white p-6 rounded-2xl border border-slate-200 space-y-2">
+          <div className="care-card p-6 rounded-2xl border border-slate-200 space-y-2">
             <div className="font-bold text-slate-900 text-sm">TPA Cashless Support</div>
             <p>Assistance in filing pre-authorization paperwork with health insurance companies and government welfare schemes where applicable.</p>
           </div>

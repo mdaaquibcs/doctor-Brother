@@ -4,7 +4,7 @@ import { Activity, ShieldCheck } from "lucide-react";
 
 export default function OperationalApproach() {
   return (
-    <section id="operational-approach" className="py-20 bg-white relative border-t border-slate-200">
+    <section id="operational-approach" className="care-content py-20 bg-transparent relative border-t border-slate-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
@@ -27,7 +27,7 @@ export default function OperationalApproach() {
           {OPERATIONAL_PILLARS.map((pillar, index) => (
             <div
               key={pillar.step}
-              className="bg-slate-50 hover:bg-white rounded-3xl p-6 sm:p-7 border border-slate-200/80 shadow-sm hover:shadow-lg transition-all duration-200 flex flex-col justify-between group hover:-translate-y-1"
+              className="care-card rounded-3xl p-6 sm:p-7 border border-slate-200/80 shadow-sm hover:shadow-lg transition-all duration-200 flex flex-col justify-between group hover:-translate-y-1"
             >
               <div>
                 <div className="flex items-center justify-between">

@@ -1,12 +1,12 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useId, useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import "./Header.css";
 import { 
   Calendar, 
   ChevronDown, 
-  ChevronUp, 
   Menu, 
   X, 
   ArrowRight,
@@ -29,6 +29,20 @@ export default function Header({
 }: HeaderProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const headerRef = useRef<HTMLElement>(null);
+  const navigationId = useId();
+
+  useEffect(() => {
+    if (!activeDropdown && !mobileMenuOpen) return;
+    const closeOutside = (event: PointerEvent) => {
+      if (event.target instanceof Node && !headerRef.current?.contains(event.target)) {
+        setActiveDropdown(null);
+        setMobileMenuOpen(false);
+      }
+    };
+    document.addEventListener("pointerdown", closeOutside);
+    return () => document.removeEventListener("pointerdown", closeOutside);
+  }, [activeDropdown, mobileMenuOpen]);
 
   const navLinks = [
     { name: "Home", href: "/", hasDropdown: false },
@@ -124,16 +138,34 @@ export default function Header({
   ];
 
   return (
-    <header className="sticky top-0 z-50 w-full bg-white shadow-sm transition-all border-b border-slate-100">
+    <header
+      ref={headerRef}
+      className="site-navigation-header w-full"
+      onKeyDown={(event) => {
+        if (event.key === "Escape") {
+          const target = event.target as HTMLElement;
+          target.closest("[data-navigation-group]")?.querySelector<HTMLButtonElement>("button")?.focus();
+          setActiveDropdown(null);
+          setMobileMenuOpen(false);
+        }
+      }}
+      onBlur={(event) => {
+        if (!event.currentTarget.contains(event.relatedTarget)) {
+          setActiveDropdown(null);
+          setMobileMenuOpen(false);
+        }
+      }}
+    >
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 py-2.5 flex items-center justify-between gap-3">
         
         {/* Brand Logo with Dr. AllCare Logo + Tagline */}
         <Link href="/" className="flex items-center gap-3 group shrink-0">
-          <div className="relative h-11 w-40 sm:w-48 flex-shrink-0 flex items-center">
+          <div className="relative h-14 w-[112px] flex-shrink-0 flex items-center sm:w-[128px]">
             <Image
               src="/images/dr-all-care-logo.png"
               alt="Dr. AllCare - We Care Always For You"
               fill
+              sizes="(max-width: 640px) 112px, 128px"
               className="object-contain object-left"
               priority
             />
@@ -153,6 +185,7 @@ export default function Header({
           {navLinks.map((item) => (
             <div 
               key={item.name}
+              data-navigation-group
               className="relative shrink-0"
               onMouseEnter={() => item.hasDropdown && setActiveDropdown(item.name)}
               onMouseLeave={() => setActiveDropdown(null)}
@@ -163,24 +196,29 @@ export default function Header({
                     href={item.href}
                     className={`flex items-center gap-1 px-2.5 py-1.5 text-xs font-semibold rounded-full transition-colors whitespace-nowrap shrink-0 ${
                       activeNav === item.name
-                        ? "text-teal-800 bg-teal-50 border border-teal-200/80 font-bold"
+                        ? "text-teal-800 bg-teal-50 border border-teal-200/80 font-bold shadow-sm"
                         : "text-slate-700 hover:text-teal-700 hover:bg-slate-50"
                     }`}
                   >
                     <span className="whitespace-nowrap">{item.name}</span>
-                    {activeDropdown === item.name || activeNav === item.name ? (
-                      <ChevronUp className="w-3.5 h-3.5 text-teal-600 shrink-0" />
-                    ) : (
-                      <ChevronDown className="w-3.5 h-3.5 text-slate-400 shrink-0" />
-                    )}
                   </Link>
+                  <button
+                    type="button"
+                    aria-label={`Toggle ${item.name} links`}
+                    aria-expanded={activeDropdown === item.name}
+                    aria-controls={`${navigationId}-${item.name.replaceAll(" ", "-")}`}
+                    onClick={() => setActiveDropdown(activeDropdown === item.name ? null : item.name)}
+                    className="rounded-lg p-1.5 text-slate-600 hover:bg-teal-50 hover:text-teal-800 focus-visible:outline-2 focus-visible:outline-teal-600"
+                  >
+                    <ChevronDown className={`h-3.5 w-3.5 ${activeDropdown === item.name ? "rotate-180" : ""}`} aria-hidden="true" />
+                  </button>
                 </div>
               ) : (
                 <Link
                   href={item.href}
                   className={`px-2.5 py-1.5 text-xs font-semibold rounded-lg transition-colors inline-block whitespace-nowrap shrink-0 ${
                     activeNav === item.name
-                      ? "text-teal-700 bg-teal-50/90 font-bold"
+                      ? "text-teal-700 bg-teal-50/90 font-bold shadow-sm"
                       : "text-slate-700 hover:text-teal-700 hover:bg-slate-50"
                   }`}
                 >
@@ -190,24 +228,25 @@ export default function Header({
 
               {/* Dropdown Menu */}
               {item.hasDropdown && activeDropdown === item.name && item.items && (
-                <div className="absolute left-0 top-full pt-1.5 w-80 animate-in fade-in duration-150 z-50">
-                  <div className="bg-white rounded-2xl shadow-2xl border border-slate-200/90 p-2.5 overflow-hidden">
+                <div className="site-navigation-dropdown" id={`${navigationId}-${item.name.replaceAll(" ", "-")}`}>
+                  <div className="site-navigation-panel">
                     {item.items.map((sub: { title: string; href: string; desc: string; icon?: React.ReactNode }) => (
                       <Link
                         key={sub.title}
                         href={sub.href}
-                        className="flex items-start gap-3 p-2.5 rounded-xl hover:bg-teal-50/80 transition-colors group/item"
+                        onClick={() => setActiveDropdown(null)}
+                        className="site-navigation-item"
                       >
                         {sub.icon && (
                           <div className="text-blue-600 mt-0.5 flex-shrink-0 group-hover/item:text-teal-700 transition-colors">
                             {sub.icon}
                           </div>
                         )}
-                        <div>
-                          <div className="text-xs font-bold text-slate-800 group-hover/item:text-teal-800">
+                        <div className="min-w-0">
+                          <div className="site-navigation-title">
                             {sub.title}
                           </div>
-                          <p className="text-[11px] text-slate-500 mt-0.5 line-clamp-1">
+                          <p className="site-navigation-description">
                             {sub.desc}
                           </p>
                         </div>
@@ -247,7 +286,7 @@ export default function Header({
 
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
-        <div className="xl:hidden border-t border-slate-200 bg-white p-5 space-y-4 shadow-xl max-h-[85vh] overflow-y-auto">
+        <div className="site-navigation-mobilePanel xl:hidden border-t border-slate-200 p-5 space-y-4 max-h-[85vh] overflow-y-auto">
           <button
             onClick={() => {
               setMobileMenuOpen(false);
@@ -262,21 +301,41 @@ export default function Header({
           <div className="space-y-1">
             {navLinks.map((item) => (
               <div key={item.name} className="border-b border-slate-100 pb-1">
-                <Link
-                  href={item.href}
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="block py-2 text-xs font-bold text-slate-800 hover:text-teal-700"
-                >
-                  {item.name}
-                </Link>
-                {item.items && (
-                  <div className="pl-3 space-y-1 pb-1">
+                <div className="flex items-center justify-between">
+                  <Link
+                    href={item.href}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="block py-3 text-sm font-bold text-slate-800 hover:text-teal-700"
+                  >
+                    {item.name}
+                  </Link>
+                  {item.items && (
+                    <button
+                      type="button"
+                      aria-label={`Toggle ${item.name} links`}
+                      aria-expanded={activeDropdown === item.name}
+                      onClick={() =>
+                        setActiveDropdown(activeDropdown === item.name ? null : item.name)
+                      }
+                      className="rounded-lg p-2 text-slate-500 transition hover:bg-teal-50 hover:text-teal-700"
+                    >
+                      <ChevronDown
+                        className={`h-4 w-4 transition-transform ${
+                          activeDropdown === item.name ? "rotate-180" : ""
+                        }`}
+                        aria-hidden="true"
+                      />
+                    </button>
+                  )}
+                </div>
+                {item.items && activeDropdown === item.name && (
+                  <div className="space-y-1 pb-2 pl-3">
                     {item.items.map((sub) => (
                       <Link
                         key={sub.title}
                         href={sub.href}
                         onClick={() => setMobileMenuOpen(false)}
-                        className="block py-1 text-[11px] text-slate-600 hover:text-teal-600"
+                        className="block rounded-lg px-2 py-2 text-xs text-slate-600 transition hover:bg-teal-50 hover:text-teal-700"
                       >
                         {sub.title}
                       </Link>

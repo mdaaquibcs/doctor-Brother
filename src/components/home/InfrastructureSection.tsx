@@ -15,7 +15,7 @@ interface InfrastructureSectionProps {
 
 export default function InfrastructureSection({ onOpenModal }: InfrastructureSectionProps) {
   return (
-    <section id="infrastructure-solutions" className="py-20 bg-slate-50 relative border-t border-slate-200">
+    <section id="infrastructure-solutions" className="care-content py-20 bg-transparent relative border-t border-slate-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
@@ -37,7 +37,7 @@ export default function InfrastructureSection({ onOpenModal }: InfrastructureSec
         <div className="mt-12 grid grid-cols-1 lg:grid-cols-2 gap-8">
           
           {/* Box 1: Hospital Setup & Architecture */}
-          <div className="bg-white rounded-3xl p-7 sm:p-8 shadow-sm border border-slate-200/90 flex flex-col justify-between">
+          <div className="care-card rounded-3xl p-7 sm:p-8 shadow-sm border border-slate-200/90 flex flex-col justify-between">
             <div className="space-y-4">
               <div className="w-12 h-12 rounded-2xl bg-[#0A1E3F] text-teal-300 flex items-center justify-center shadow-md">
                 <Building className="w-6 h-6" />
@@ -77,7 +77,7 @@ export default function InfrastructureSection({ onOpenModal }: InfrastructureSec
           </div>
 
           {/* Box 2: Medical Equipment & Procurement */}
-          <div className="bg-white rounded-3xl p-7 sm:p-8 shadow-sm border border-slate-200/90 flex flex-col justify-between">
+          <div className="care-card rounded-3xl p-7 sm:p-8 shadow-sm border border-slate-200/90 flex flex-col justify-between">
             <div className="space-y-4">
               <div className="w-12 h-12 rounded-2xl bg-teal-700 text-white flex items-center justify-center shadow-md">
                 <Cpu className="w-6 h-6" />

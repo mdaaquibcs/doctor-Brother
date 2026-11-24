@@ -15,7 +15,7 @@ interface HealthcareProfessionalsProps {
 
 export default function HealthcareProfessionalsSection({ onOpenModal }: HealthcareProfessionalsProps) {
   return (
-    <section className="py-20 bg-slate-50 relative border-t border-slate-200">
+    <section className="care-content py-20 bg-transparent relative border-t border-slate-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
@@ -37,7 +37,7 @@ export default function HealthcareProfessionalsSection({ onOpenModal }: Healthca
             </p>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
-              <div className="bg-white p-5 rounded-2xl border border-slate-200/90 shadow-sm space-y-1.5">
+              <div className="care-card p-5 rounded-2xl border border-slate-200/90 shadow-sm space-y-1.5">
                 <div className="flex items-center gap-2 text-teal-800 font-bold text-sm">
                   <UserCheck className="w-4 h-4 text-teal-600" />
                   Direct Hospital Empanelment
@@ -47,7 +47,7 @@ export default function HealthcareProfessionalsSection({ onOpenModal }: Healthca
                 </p>
               </div>
 
-              <div className="bg-white p-5 rounded-2xl border border-slate-200/90 shadow-sm space-y-1.5">
+              <div className="care-card p-5 rounded-2xl border border-slate-200/90 shadow-sm space-y-1.5">
                 <div className="flex items-center gap-2 text-teal-800 font-bold text-sm">
                   <Calendar className="w-4 h-4 text-teal-600" />
                   Predictable Duty Rosters
@@ -70,7 +70,7 @@ export default function HealthcareProfessionalsSection({ onOpenModal }: Healthca
           </div>
 
           {/* Right Portal Card */}
-          <div className="lg:col-span-5 bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-xl space-y-5">
+          <div className="care-card lg:col-span-5  p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-xl space-y-5">
             <div className="flex items-center justify-between pb-3 border-b border-slate-100">
               <div className="text-sm font-bold text-[#0A1E3F]">Medical Professional Verification Gateway</div>
               <span className="text-[11px] font-mono bg-teal-50 text-teal-700 px-2.5 py-0.5 rounded font-bold">

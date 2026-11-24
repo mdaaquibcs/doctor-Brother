@@ -61,7 +61,7 @@ export default function FindHospitalsPage() {
     : hospitals.filter(h => h.city.toLowerCase().includes(cityFilter.toLowerCase()));
 
   return (
-    <main className="min-h-screen flex flex-col bg-slate-50">
+    <main className="care-page min-h-screen flex flex-col">
       <Header onOpenModal={() => setModalOpen(true)} />
 
       <PageHeader
@@ -76,7 +76,7 @@ export default function FindHospitalsPage() {
         onCtaClick={() => setModalOpen(true)}
       />
 
-      <section className="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+      <section className="care-content py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
         <div className="flex flex-wrap gap-2">
           {["All", "Delhi NCR", "Mumbai", "Hyderabad", "Bengaluru", "Chennai", "Kolkata"].map((c) => (
             <button
@@ -95,7 +95,7 @@ export default function FindHospitalsPage() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filtered.map((hosp, i) => (
-            <div key={i} className="bg-white rounded-3xl p-7 border border-slate-200/90 shadow-sm flex flex-col justify-between hover:shadow-md transition">
+            <div key={i} className="care-card rounded-3xl p-7 border border-slate-200/90 shadow-sm flex flex-col justify-between hover:shadow-md transition">
               <div className="space-y-3">
                 <div className="flex items-center justify-between">
                   <div className="w-10 h-10 rounded-xl bg-teal-50 text-teal-600 flex items-center justify-center border border-teal-100">

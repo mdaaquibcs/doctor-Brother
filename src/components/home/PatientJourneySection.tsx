@@ -8,7 +8,7 @@ interface PatientJourneySectionProps {
 
 export default function PatientJourneySection({ onOpenModal }: PatientJourneySectionProps) {
   return (
-    <section className="py-20 bg-white relative border-t border-slate-200">
+    <section className="care-content py-20 bg-transparent relative border-t border-slate-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
@@ -32,7 +32,7 @@ export default function PatientJourneySection({ onOpenModal }: PatientJourneySec
           {PATIENT_JOURNEY_STEPS.map((step) => (
             <div
               key={step.stepNumber}
-              className="bg-slate-50 rounded-3xl p-6 sm:p-7 border border-slate-200/90 shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between"
+              className="care-card rounded-3xl p-6 sm:p-7 border border-slate-200/90 shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between"
             >
               <div>
                 <div className="w-10 h-10 rounded-2xl bg-teal-600 text-white font-black text-sm flex items-center justify-center shadow-md">

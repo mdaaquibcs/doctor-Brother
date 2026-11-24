@@ -13,41 +13,41 @@ interface CorporatePartnershipSectionProps {
 
 export default function CorporatePartnershipSection({ onOpenModal }: CorporatePartnershipSectionProps) {
   return (
-    <section className="py-20 bg-[#061226] text-white relative border-t border-slate-800">
+    <section className="care-content py-20 bg-transparent text-slate-700 relative border-t border-slate-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
           
           <div className="lg:col-span-7 space-y-4">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-teal-500/20 text-teal-300 border border-teal-500/30">
-              <Handshake className="w-3.5 h-3.5 text-teal-300" />
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-teal-50 text-teal-700 border border-teal-500/30">
+              <Handshake className="w-3.5 h-3.5 text-teal-700" />
               <span>Institutional B2B Partnerships</span>
             </div>
 
-            <h2 className="text-3xl sm:text-4xl font-black text-white tracking-tight">
+            <h2 className="text-3xl sm:text-4xl font-black text-[#0A1E3F] tracking-tight">
               Hospital Operations Contracts & Corporate Healthcare SLAs
             </h2>
 
-            <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
+            <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
               We collaborate with healthcare trusts, private hospital owners, real-estate conglomerates, 
               and industrial corporations to create sustainable, profitable, and patient-centric healthcare operations.
             </p>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2 text-xs sm:text-sm text-slate-300">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2 text-xs sm:text-sm text-slate-600">
               <div className="flex items-start gap-2.5">
-                <CheckCircle2 className="w-4 h-4 text-teal-400 flex-shrink-0 mt-0.5" />
+                <CheckCircle2 className="w-4 h-4 text-teal-600 flex-shrink-0 mt-0.5" />
                 <span>Turnkey Hospital Operations Outsourcing</span>
               </div>
               <div className="flex items-start gap-2.5">
-                <CheckCircle2 className="w-4 h-4 text-teal-400 flex-shrink-0 mt-0.5" />
+                <CheckCircle2 className="w-4 h-4 text-teal-600 flex-shrink-0 mt-0.5" />
                 <span>Annual Occupational Healthcare (OHC) Contracts</span>
               </div>
               <div className="flex items-start gap-2.5">
-                <CheckCircle2 className="w-4 h-4 text-teal-400 flex-shrink-0 mt-0.5" />
+                <CheckCircle2 className="w-4 h-4 text-teal-600 flex-shrink-0 mt-0.5" />
                 <span>Diagnostic Equipment Revenue-Share Leases</span>
               </div>
               <div className="flex items-start gap-2.5">
-                <CheckCircle2 className="w-4 h-4 text-teal-400 flex-shrink-0 mt-0.5" />
+                <CheckCircle2 className="w-4 h-4 text-teal-600 flex-shrink-0 mt-0.5" />
                 <span>Strict Key Performance Indicator (KPI) SLA Agreements</span>
               </div>
             </div>

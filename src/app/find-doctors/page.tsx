@@ -67,7 +67,7 @@ export default function FindDoctorsPage() {
     : doctors.filter(d => d.specialty.toLowerCase().includes(selectedSpecialty.toLowerCase()));
 
   return (
-    <main className="min-h-screen flex flex-col bg-slate-50">
+    <main className="care-page min-h-screen flex flex-col">
       <Header onOpenModal={() => setModalOpen(true)} />
 
       <PageHeader
@@ -82,7 +82,7 @@ export default function FindDoctorsPage() {
         onCtaClick={() => setModalOpen(true)}
       />
 
-      <section className="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+      <section className="care-content py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
         {/* Filter Pills */}
         <div className="flex flex-wrap gap-2">
           {["All", "Cardiac", "Oncologist", "Orthopedic", "Neurosurgeon", "Gastroenterologist"].map((tab) => (
@@ -103,7 +103,7 @@ export default function FindDoctorsPage() {
         {/* Doctor Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filtered.map((doc, idx) => (
-            <div key={idx} className="bg-white rounded-3xl p-7 border border-slate-200/90 shadow-sm flex flex-col justify-between hover:shadow-md transition">
+            <div key={idx} className="care-card rounded-3xl p-7 border border-slate-200/90 shadow-sm flex flex-col justify-between hover:shadow-md transition">
               <div className="space-y-3">
                 <div className="flex items-center justify-between">
                   <div className="w-12 h-12 rounded-2xl bg-teal-50 text-teal-700 font-bold flex items-center justify-center text-lg border border-teal-100">

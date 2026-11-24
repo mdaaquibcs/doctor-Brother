@@ -5,21 +5,21 @@ import Image from "next/image";
 import Link from "next/link";
 import Header from "@/components/common/Header";
 import Footer from "@/components/common/Footer";
+import PageHeader from "@/components/common/PageHeader";
 import QuickEnquiryModal from "@/components/common/QuickEnquiryModal";
-import { 
-  Building2, 
-  ArrowRight, 
-  FileDown, 
-  UserCheck, 
-  ShieldAlert, 
-  HeartPulse, 
-  ClipboardCheck, 
-  Users, 
-  Syringe, 
-  TrendingUp, 
-  Handshake, 
-  ShieldCheck, 
-  Clock, 
+import {
+  Building2,
+  ArrowRight,
+  UserCheck,
+  ShieldAlert,
+  HeartPulse,
+  ClipboardCheck,
+  Users,
+  Syringe,
+  TrendingUp,
+  Handshake,
+  ShieldCheck,
+  Clock,
   CheckCircle2
 } from "lucide-react";
 
@@ -136,7 +136,7 @@ Contact our Enterprise Solutions Team at proposal@drallcare.com
   };
 
   return (
-    <main className="min-h-screen flex flex-col bg-slate-50 selection:bg-teal-500 selection:text-white">
+    <main className="care-page min-h-screen flex flex-col selection:bg-teal-500 selection:text-white">
       {/* Global Header */}
       <Header 
         activeNav="For Businesses" 
@@ -154,110 +154,19 @@ Contact our Enterprise Solutions Team at proposal@drallcare.com
       {/* ============================================================== */}
       {/* 1. HERO SECTION (Matches Screenshot Exactly)                   */}
       {/* ============================================================== */}
-      <section className="relative w-full bg-gradient-to-r from-[#F8FAFC] via-[#F1F7F9] to-[#E9F4F7] border-b border-slate-200/70 overflow-hidden">
-        {/* Subtle decorative background swooshes matching screenshot */}
-        <div className="absolute right-0 top-0 bottom-0 w-1/3 pointer-events-none hidden lg:block overflow-hidden">
-          <svg className="w-full h-full text-teal-500/10" viewBox="0 0 500 500" fill="currentColor" preserveAspectRatio="none">
-            <path d="M0,0 C150,180 350,120 500,280 L500,0 Z" />
-            <path d="M100,0 C280,220 320,380 500,500 L500,0 Z" opacity="0.5" />
-          </svg>
-        </div>
-
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10 lg:py-14">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-            
-            {/* Left Hero Content */}
-            <div className="lg:col-span-6 z-10">
-              {/* Badge */}
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-teal-50/90 border border-teal-200 text-teal-800 text-xs font-semibold shadow-xs">
-                <div className="w-4 h-4 rounded-full bg-teal-600/15 flex items-center justify-center text-teal-700">
-                  <Building2 className="w-3 h-3" />
-                </div>
-                <span>Corporate Healthcare Solutions</span>
-              </div>
-
-              {/* Title */}
-              <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#0A1E3F] tracking-tight leading-[1.12] mt-4">
-                Corporate Healthcare<br />
-                <span className="text-[#0A1E3F]">Solutions</span>
-              </h1>
-
-              {/* Subtitle */}
-              <p className="mt-4 text-xs sm:text-sm md:text-base text-slate-600 max-w-lg leading-relaxed font-normal">
-                Comprehensive healthcare solutions for businesses, industries and corporate organizations.
-              </p>
-
-              {/* CTA Buttons */}
-              <div className="mt-6 flex flex-wrap items-center gap-3">
-                <button
-                  onClick={() => setModalOpen(true)}
-                  className="bg-[#0A1E3F] hover:bg-[#132A54] text-white px-6 py-3 rounded-full text-xs sm:text-sm font-semibold flex items-center gap-2 shadow-sm transition-all hover:scale-[1.02]"
-                >
-                  <span>Request Corporate Proposal</span>
-                  <ArrowRight className="w-4 h-4" />
-                </button>
-
-                <button
-                  onClick={handleDownloadBrochure}
-                  className="bg-white hover:bg-slate-50 text-[#0A1E3F] border border-slate-300 px-5 py-3 rounded-full text-xs sm:text-sm font-semibold flex items-center gap-2 shadow-xs transition-colors"
-                >
-                  <FileDown className="w-4 h-4 text-teal-600" />
-                  <span>Download Brochure</span>
-                </button>
-              </div>
-            </div>
-
-            {/* Right Hero Visual with Executive & Doctor */}
-            <div className="lg:col-span-6 relative flex flex-col items-end">
-              {/* Top-Right Script Accent: "Healthier Workforce. Healthier Business." */}
-              <div className="w-full flex justify-end mb-3 pr-2">
-                <div className="text-right">
-                  <span 
-                    className="italic text-xl sm:text-2xl md:text-3xl text-teal-900 font-bold tracking-tight block drop-shadow-xs"
-                    style={{ fontFamily: "'Brush Script MT', 'Dancing Script', 'Caveat', 'Georgia', cursive, serif" }}
-                  >
-                    Healthier Workforce.
-                  </span>
-                  <span 
-                    className="italic text-xl sm:text-2xl md:text-3xl text-teal-800 font-bold tracking-tight block -mt-1 drop-shadow-xs"
-                    style={{ fontFamily: "'Brush Script MT', 'Dancing Script', 'Caveat', 'Georgia', cursive, serif" }}
-                  >
-                    Healthier Business.
-                  </span>
-                </div>
-              </div>
-
-              {/* Hero Photo Card */}
-              <div className="relative w-full h-56 sm:h-72 md:h-80 rounded-3xl overflow-hidden shadow-xl border-4 border-white group">
-                <Image
-                  src="/images/corporate-handshake.jpg"
-                  alt="Corporate Executive and Healthcare Professional"
-                  fill
-                  className="object-cover object-top group-hover:scale-105 transition-transform duration-700"
-                  priority
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0A1E3F]/40 via-transparent to-transparent"></div>
-
-                {/* Badge Overlay */}
-                <div className="absolute bottom-3 left-3 bg-white/95 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-teal-100 shadow-sm flex items-center gap-2">
-                  <div className="w-2 h-2 rounded-full bg-teal-500 animate-pulse"></div>
-                  <span className="text-[11px] font-bold text-[#0A1E3F]">
-                    Trusted by 100+ Enterprise Clients in India
-                  </span>
-                </div>
-              </div>
-
-            </div>
-
-          </div>
-        </div>
-      </section>
+      <PageHeader
+        breadcrumb={[{ label: "For Businesses" }]}
+        ctaLabel="Request a proposal"
+        onCtaClick={() => setModalOpen(true)}
+        secondaryLabel="Download brochure"
+        onSecondaryClick={handleDownloadBrochure}
+      />
 
 
       {/* ============================================================== */}
       {/* 2. OUR CORPORATE HEALTHCARE SERVICES (8 Cards Grid)             */}
       {/* ============================================================== */}
-      <section className="py-10 sm:py-12 bg-white border-b border-slate-100">
+      <section className="care-content py-10 sm:py-12 bg-transparent border-b border-slate-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className="flex flex-col lg:flex-row gap-8 items-start">
@@ -291,7 +200,7 @@ Contact our Enterprise Solutions Team at proposal@drallcare.com
                 {corporateServices.map((service, idx) => (
                   <div 
                     key={idx}
-                    className="bg-white rounded-2xl border border-slate-200/90 p-4 hover:border-teal-400 hover:shadow-md transition-all duration-300 flex flex-col justify-between group"
+                    className="care-card rounded-2xl border border-slate-200/90 p-4 hover:border-teal-400 hover:shadow-md transition-all duration-300 flex flex-col justify-between group"
                   >
                     <div>
                       {/* Icon */}
@@ -384,8 +293,8 @@ Contact our Enterprise Solutions Team at proposal@drallcare.com
             <div className="flex items-center gap-4 sm:gap-5 w-full md:w-auto">
               <div className="relative w-24 h-16 sm:w-32 sm:h-20 rounded-xl overflow-hidden flex-shrink-0 border-2 border-white/20 shadow-md">
                 <Image
-                  src="/images/hospital-facility.jpg"
-                  alt="Dr. AllCare Corporate Facility"
+                  src="/images/pages/corporate-healthcare.webp"
+                  alt="Illustrative workplace healthcare consultation"
                   fill
                   className="object-cover"
                 />

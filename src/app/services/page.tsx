@@ -5,20 +5,18 @@ import Link from "next/link";
 import Image from "next/image";
 import Header from "@/components/common/Header";
 import Footer from "@/components/common/Footer";
+import PageHeader from "@/components/common/PageHeader";
 import QuickEnquiryModal from "@/components/common/QuickEnquiryModal";
-import { 
-  Building2, 
-  Handshake, 
-  Users, 
-  MonitorCheck, 
-  Layers, 
-  MapPin, 
-  Globe2, 
-  HeartHandshake, 
-  ShieldCheck, 
-  ArrowRight,
-  Heart,
-  CheckCircle2
+import {
+  Building2,
+  Handshake,
+  Users,
+  MonitorCheck,
+  Layers,
+  MapPin,
+  Globe2,
+  HeartHandshake,
+  ArrowRight
 } from "lucide-react";
 
 export default function ServicesPage() {
@@ -30,7 +28,7 @@ export default function ServicesPage() {
       title: "Hospital Management Services",
       description: "Complete hospital operations management and outsourcing.",
       href: "/hospital-management",
-      image: "/images/hospital-facility.jpg",
+      image: "/images/pages/hospital-management.webp",
       icon: <Building2 className="w-5 h-5 text-teal-600" />,
       iconBg: "bg-teal-50 border-teal-200"
     },
@@ -39,7 +37,7 @@ export default function ServicesPage() {
       title: "Corporate Healthcare Solutions",
       description: "Tailored healthcare solutions for businesses and industries.",
       href: "/corporate-healthcare",
-      image: "/images/corporate-handshake.jpg",
+      image: "/images/pages/corporate-healthcare.webp",
       icon: <Handshake className="w-5 h-5 text-teal-600" />,
       iconBg: "bg-teal-50 border-teal-200"
     },
@@ -48,7 +46,7 @@ export default function ServicesPage() {
       title: "Healthcare Staffing & Recruitment",
       description: "Skilled doctors, nurses and medical professionals.",
       href: "/healthcare-staffing",
-      image: "/images/medical-team.jpg",
+      image: "/images/pages/healthcare-staffing.webp",
       icon: <Users className="w-5 h-5 text-teal-600" />,
       iconBg: "bg-teal-50 border-teal-200"
     },
@@ -57,7 +55,7 @@ export default function ServicesPage() {
       title: "Medical Equipment Solutions",
       description: "Advanced medical equipment and procurement.",
       href: "/medical-equipment",
-      image: "/images/hospital-facility.jpg",
+      image: "/images/pages/medical-equipment.webp",
       icon: <MonitorCheck className="w-5 h-5 text-teal-600" />,
       iconBg: "bg-teal-50 border-teal-200"
     },
@@ -66,7 +64,7 @@ export default function ServicesPage() {
       title: "Hospital Setup & Consultancy",
       description: "End-to-end hospital planning and infrastructure.",
       href: "/hospital-setup-consultancy",
-      image: "/images/hospital-facility.jpg",
+      image: "/images/pages/hospital-setup-consultancy.webp",
       icon: <Layers className="w-5 h-5 text-teal-600" />,
       iconBg: "bg-teal-50 border-teal-200"
     },
@@ -75,7 +73,7 @@ export default function ServicesPage() {
       title: "Domestic Medical Tourism",
       description: "Get the best treatment in India with complete support.",
       href: "/domestic-patients",
-      image: "/images/medical-team.jpg",
+      image: "/images/pages/domestic-patients.webp",
       icon: <MapPin className="w-5 h-5 text-teal-600" />,
       iconBg: "bg-teal-50 border-teal-200"
     },
@@ -84,7 +82,7 @@ export default function ServicesPage() {
       title: "International Medical Tourism",
       description: "World-class treatment for international patients.",
       href: "/international-patients",
-      image: "/images/medical-team.jpg",
+      image: "/images/pages/international-patients.webp",
       icon: <Globe2 className="w-5 h-5 text-teal-600" />,
       iconBg: "bg-teal-50 border-teal-200"
     },
@@ -93,114 +91,27 @@ export default function ServicesPage() {
       title: "Patient Care & Coordination",
       description: "Dedicated support throughout your treatment journey.",
       href: "/patient-care-coordination",
-      image: "/images/hospital-facility.jpg",
+      image: "/images/pages/patient-care-coordination.webp",
       icon: <HeartHandshake className="w-5 h-5 text-teal-600" />,
       iconBg: "bg-teal-50 border-teal-200"
     }
   ];
 
   return (
-    <main className="min-h-screen flex flex-col bg-slate-50">
+    <main className="care-page min-h-screen flex flex-col">
       <Header onOpenModal={() => setModalOpen(true)} />
 
       {/* 1. TOP HERO BANNER (Exact Match to Screenshot) */}
-      <section className="relative bg-gradient-to-b from-[#F0F7FD] via-[#F8FBFE] to-white pt-8 pb-14 overflow-hidden border-b border-slate-100">
-        
-        {/* Decorative Wave Accent */}
-        <div className="absolute left-0 bottom-0 w-64 h-32 bg-gradient-to-tr from-teal-400/20 to-transparent rounded-tr-full pointer-events-none"></div>
-
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-            
-            {/* Left Content Column (col-span-6) */}
-            <div className="lg:col-span-6 space-y-4">
-              {/* Pill Badge */}
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold text-teal-800 bg-teal-50 border border-teal-200/90 shadow-sm">
-                <HeartHandshake className="w-4 h-4 text-teal-600" />
-                <span>Our Services</span>
-              </div>
-
-              {/* Headline */}
-              <h1 className="text-3xl sm:text-4xl xl:text-[44px] font-black tracking-tight text-[#0A1E3F] leading-[1.18]">
-                Comprehensive Healthcare<br />
-                Solutions <span className="text-[#00A389]">Under One Roof</span>
-              </h1>
-
-              {/* Subheading */}
-              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed max-w-xl">
-                From hospital management to medical tourism, we deliver end-to-end healthcare solutions for hospitals, businesses and patients.
-              </p>
-
-              {/* 3 Trust Badges */}
-              <div className="flex flex-wrap items-center gap-5 pt-2 text-xs font-semibold text-slate-700">
-                <div className="flex items-center gap-1.5">
-                  <ShieldCheck className="w-4 h-4 text-teal-600" />
-                  <span>Trusted Partner</span>
-                </div>
-                <div className="flex items-center gap-1.5">
-                  <Users className="w-4 h-4 text-teal-600" />
-                  <span>Expert Team</span>
-                </div>
-                <div className="flex items-center gap-1.5">
-                  <CheckCircle2 className="w-4 h-4 text-teal-600" />
-                  <span>Proven Results</span>
-                </div>
-              </div>
-
-              {/* Explore Button */}
-              <div className="pt-3">
-                <a
-                  href="#core-services-grid"
-                  className="px-6 py-3 bg-[#0A1E3F] hover:bg-[#122A54] text-white font-bold text-xs sm:text-sm rounded-xl transition shadow inline-flex items-center gap-2 group"
-                >
-                  <span>Explore Our Services</span>
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                </a>
-              </div>
-            </div>
-
-            {/* Right Visual Columns (col-span-6): Doctor Team & Hospital Facade */}
-            <div className="lg:col-span-6 grid grid-cols-1 sm:grid-cols-2 gap-4 items-center">
-              {/* Doctor Team Photo */}
-              <div className="relative w-full h-[260px] sm:h-[300px] rounded-3xl overflow-hidden shadow-xl border-4 border-white">
-                <Image
-                  src="/images/medical-team.jpg"
-                  alt="Dr. AllCare Healthcare Verified Doctors and Staff"
-                  fill
-                  priority
-                  className="object-cover object-center"
-                />
-              </div>
-
-              {/* Hospital Building with 'Better Healthcare A Healthier Tomorrow' Sign */}
-              <div className="relative w-full h-[260px] sm:h-[300px] rounded-3xl overflow-hidden shadow-xl border-4 border-white group">
-                <Image
-                  src="/images/hospital-facility.jpg"
-                  alt="Modern Hospital Facility"
-                  fill
-                  className="object-cover object-center group-hover:scale-105 transition-transform duration-500"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0A1E3F]/80 via-transparent to-transparent pointer-events-none"></div>
-
-                {/* Corporate Healthcare Sign Overlay */}
-                <div className="absolute bottom-4 left-4 right-4 bg-white/95 backdrop-blur-md rounded-2xl p-3 shadow-lg flex items-center gap-2.5 border border-white/50">
-                  <div className="w-8 h-8 rounded-xl bg-teal-500 text-white flex items-center justify-center flex-shrink-0">
-                    <Heart className="w-4 h-4 fill-white" />
-                  </div>
-                  <div>
-                    <div className="text-xs font-bold text-[#0A1E3F] leading-tight">Better Healthcare</div>
-                    <div className="text-[11px] text-teal-700 font-semibold">A Healthier Tomorrow</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </section>
+      <PageHeader
+        breadcrumb={[{ label: "Our Services" }]}
+        ctaLabel="Explore our services"
+        ctaHref="#core-services-grid"
+        secondaryLabel="Talk to our team"
+        onSecondaryClick={() => setModalOpen(true)}
+      />
 
       {/* 2. OUR CORE SERVICES TITLE (Exact Match to Screenshot) */}
-      <section id="core-services-grid" className="py-14 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+      <section id="core-services-grid" className="care-content py-14 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
         
         <div className="text-center space-y-2">
           <div className="flex items-center justify-center gap-3">
@@ -220,7 +131,7 @@ export default function ServicesPage() {
           {servicesGrid.map((card) => (
             <div
               key={card.id}
-              className="bg-white rounded-2xl p-4 shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-200/90 flex flex-col justify-between group hover:-translate-y-1"
+              className="care-card rounded-2xl p-4 shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-200/90 flex flex-col justify-between group hover:-translate-y-1"
             >
               <div className="space-y-3">
                 {/* Thumbnail Image */}
@@ -266,7 +177,7 @@ export default function ServicesPage() {
       </section>
 
       {/* 4. BOTTOM GRADIENT BANNER STRIP (Exact Match to Screenshot) */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
+      <section className="care-content max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
         <div className="bg-gradient-to-r from-[#008F87] via-[#00A389] to-[#01807A] text-white rounded-2xl p-5 sm:p-6 shadow-xl flex flex-col md:flex-row items-center justify-between gap-6 relative overflow-hidden">
           
           {/* Subtle Background Cross */}

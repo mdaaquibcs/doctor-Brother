@@ -21,7 +21,7 @@ export default function HospitalManagementSection({ onOpenModal }: HospitalManag
   const [activeTab, setActiveTab] = useState<"operations" | "revenue" | "quality">("operations");
 
   return (
-    <section id="hospital-management" className="py-20 bg-white relative border-t border-slate-200/80">
+    <section id="hospital-management" className="care-content py-20 bg-transparent relative border-t border-slate-200/80">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Headline */}

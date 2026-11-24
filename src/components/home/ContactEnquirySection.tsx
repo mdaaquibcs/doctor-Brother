@@ -78,7 +78,7 @@ export default function ContactEnquirySection() {
   };
 
   return (
-    <section id="contact" className="py-20 bg-slate-50 relative border-t border-slate-200">
+    <section id="contact" className="care-content py-20 bg-transparent relative border-t border-slate-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
@@ -102,7 +102,7 @@ export default function ContactEnquirySection() {
 
             {/* Direct Contact Cards */}
             <div className="space-y-4 pt-2">
-              <div className="bg-white p-5 rounded-2xl border border-slate-200/90 shadow-sm flex items-start gap-4">
+              <div className="care-card p-5 rounded-2xl border border-slate-200/90 shadow-sm flex items-start gap-4">
                 <div className="w-10 h-10 rounded-xl bg-teal-50 text-teal-600 flex items-center justify-center flex-shrink-0">
                   <MapPin className="w-5 h-5" />
                 </div>
@@ -119,7 +119,7 @@ export default function ContactEnquirySection() {
                 </div>
               </div>
 
-              <div className="bg-white p-5 rounded-2xl border border-slate-200/90 shadow-sm flex items-start gap-4">
+              <div className="care-card p-5 rounded-2xl border border-slate-200/90 shadow-sm flex items-start gap-4">
                 <div className="w-10 h-10 rounded-xl bg-teal-50 text-teal-600 flex items-center justify-center flex-shrink-0">
                   <Phone className="w-5 h-5" />
                 </div>
@@ -138,7 +138,7 @@ export default function ContactEnquirySection() {
                 </div>
               </div>
 
-              <div className="bg-white p-5 rounded-2xl border border-slate-200/90 shadow-sm flex items-start gap-4">
+              <div className="care-card p-5 rounded-2xl border border-slate-200/90 shadow-sm flex items-start gap-4">
                 <div className="w-10 h-10 rounded-xl bg-teal-50 text-teal-600 flex items-center justify-center flex-shrink-0">
                   <Mail className="w-5 h-5" />
                 </div>
@@ -159,7 +159,7 @@ export default function ContactEnquirySection() {
           </div>
 
           {/* Right Lead Capture Form */}
-          <div className="lg:col-span-7 bg-white p-7 sm:p-9 rounded-3xl border border-slate-200/90 shadow-xl">
+          <div className="care-card lg:col-span-7  p-7 sm:p-9 rounded-3xl border border-slate-200/90 shadow-xl">
             {submitted ? (
               <div className="text-center py-12 px-4 space-y-4">
                 <div className="w-16 h-16 bg-teal-50 text-teal-600 rounded-full flex items-center justify-center mx-auto border border-teal-200">

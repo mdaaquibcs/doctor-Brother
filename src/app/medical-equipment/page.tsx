@@ -26,7 +26,7 @@ export default function MedicalEquipmentPage() {
   ];
 
   return (
-    <main className="min-h-screen flex flex-col bg-slate-50">
+    <main className="care-page min-h-screen flex flex-col">
       <Header onOpenModal={() => setModalOpen(true)} />
 
       <PageHeader
@@ -41,10 +41,10 @@ export default function MedicalEquipmentPage() {
         onCtaClick={() => setModalOpen(true)}
       />
 
-      <section className="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+      <section className="care-content py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {equipmentList.map((cat, i) => (
-            <div key={i} className="bg-white p-7 rounded-3xl border border-slate-200/90 shadow-sm flex flex-col justify-between">
+            <div key={i} className="care-card p-7 rounded-3xl border border-slate-200/90 shadow-sm flex flex-col justify-between">
               <div>
                 <span className="text-[11px] font-bold text-teal-700 uppercase tracking-wider">
                   Modality Tier
