@@ -122,12 +122,13 @@ export default function FindTreatmentPage() {
         <div className="bg-white rounded-2xl sm:rounded-full border border-slate-200/90 shadow-xl p-2 sm:p-2.5 flex flex-col sm:flex-row items-center gap-3">
           
           {/* Input field */}
-          <div className="flex items-center gap-3 pl-3 sm:pl-4 flex-1 w-full">
+          <div className="care-search flex min-w-0 items-center gap-3 pl-3 sm:pl-4 flex-1 w-full">
             <Search className="w-5 h-5 text-slate-400 flex-shrink-0" />
             <input
               id="treatment-search-input"
-              type="text"
-              placeholder="Search by procedure or specialty (e.g., Bypass, Knee Replacement, Oncology, Spine)..."
+              type="search"
+              aria-label="Search treatments and specialties"
+              placeholder="Search treatments or specialties…"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               className="w-full bg-transparent text-xs sm:text-sm text-slate-800 placeholder-slate-400 outline-none py-2"
@@ -158,12 +159,12 @@ export default function FindTreatmentPage() {
       {/* 3. 3 SUPER-SPECIALTY CARDS (Cardiac, Oncology, Orthopedics)    */}
       {/* ============================================================== */}
       <section className="care-content py-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
 
           {/* ------------------------------------------------------------ */}
           {/* CARD 1: CARDIAC SCIENCES                                     */}
           {/* ------------------------------------------------------------ */}
-          <div className="bg-gradient-to-br from-white via-white to-blue-50/40 rounded-3xl border border-slate-200/90 hover:border-blue-300 hover:shadow-xl transition-all duration-300 p-6 flex flex-col justify-between relative overflow-hidden group">
+          <div className="treatment-feature bg-gradient-to-br from-white via-white to-blue-50/40 rounded-3xl border border-slate-200/90 hover:border-blue-300 hover:shadow-xl transition-all duration-300 p-6 flex flex-col justify-between relative overflow-hidden group">
             {/* Soft background glow */}
             <div className="absolute -right-12 -bottom-12 w-48 h-48 bg-blue-100/50 rounded-full blur-2xl pointer-events-none group-hover:scale-125 transition-transform duration-500"></div>
 
@@ -254,7 +255,7 @@ export default function FindTreatmentPage() {
           {/* ------------------------------------------------------------ */}
           {/* CARD 2: ONCOLOGY & CANCER CARE                               */}
           {/* ------------------------------------------------------------ */}
-          <div className="bg-gradient-to-br from-white via-white to-purple-50/40 rounded-3xl border border-slate-200/90 hover:border-purple-300 hover:shadow-xl transition-all duration-300 p-6 flex flex-col justify-between relative overflow-hidden group">
+          <div className="treatment-feature bg-gradient-to-br from-white via-white to-purple-50/40 rounded-3xl border border-slate-200/90 hover:border-purple-300 hover:shadow-xl transition-all duration-300 p-6 flex flex-col justify-between relative overflow-hidden group">
             {/* Soft background glow */}
             <div className="absolute -right-12 -bottom-12 w-48 h-48 bg-purple-100/50 rounded-full blur-2xl pointer-events-none group-hover:scale-125 transition-transform duration-500"></div>
 
@@ -355,7 +356,7 @@ export default function FindTreatmentPage() {
           {/* ------------------------------------------------------------ */}
           {/* CARD 3: ORTHOPEDICS & JOINT REPLACEMENT                      */}
           {/* ------------------------------------------------------------ */}
-          <div className="bg-gradient-to-br from-white via-white to-teal-50/40 rounded-3xl border border-slate-200/90 hover:border-teal-300 hover:shadow-xl transition-all duration-300 p-6 flex flex-col justify-between relative overflow-hidden group">
+          <div className="treatment-feature bg-gradient-to-br from-white via-white to-teal-50/40 rounded-3xl border border-slate-200/90 hover:border-teal-300 hover:shadow-xl transition-all duration-300 p-6 flex flex-col justify-between relative overflow-hidden group">
             {/* Soft background glow */}
             <div className="absolute -right-12 -bottom-12 w-48 h-48 bg-teal-100/50 rounded-full blur-2xl pointer-events-none group-hover:scale-125 transition-transform duration-500"></div>
 

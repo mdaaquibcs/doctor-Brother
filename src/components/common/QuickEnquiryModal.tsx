@@ -1,375 +1,114 @@
 "use client";
 
-import React, { useState } from "react";
-import { X, CheckCircle2, Building, User, Mail, Phone, MapPin, Send, AlertCircle } from "lucide-react";
+import { useEffect, useRef, useState, type FormEvent } from "react";
+import { X, CheckCircle2, Building2, HeartPulse, ShieldCheck, LoaderCircle, AlertCircle } from "lucide-react";
 import PhoneInputWithCountry from "./PhoneInputWithCountry";
+import "./QuickEnquiryModal.css";
 
+type EnquiryType = "b2b" | "patient";
 interface QuickEnquiryModalProps {
   isOpen: boolean;
   onClose: () => void;
-  initialType?: "b2b" | "patient";
+  initialType?: EnquiryType;
 }
 
-export default function QuickEnquiryModal({
-  isOpen,
-  onClose,
-  initialType = "b2b"
-}: QuickEnquiryModalProps) {
-  const [activeTab, setActiveTab] = useState<"b2b" | "patient">(initialType);
-  const [isSubmitted, setIsSubmitted] = useState(false);
+export default function QuickEnquiryModal({ isOpen, onClose, initialType = "b2b" }: QuickEnquiryModalProps) {
+  return isOpen ? <EnquiryDialog key={initialType} onClose={onClose} initialType={initialType} /> : null;
+}
+
+function EnquiryDialog({ onClose, initialType }: { onClose: () => void; initialType: EnquiryType }) {
+  const dialog = useRef<HTMLDialogElement>(null);
+  const heading = useRef<HTMLHeadingElement>(null);
+  const [activeTab, setActiveTab] = useState<EnquiryType>(initialType);
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [referenceId, setReferenceId] = useState("");
-  const [formData, setFormData] = useState({
-    fullName: "",
-    email: "",
-    phone: "",
-    countryCode: "+91",
-    organization: "",
-    city: "",
-    category: "Hospital Operations Management",
-    patientCountry: "India",
-    medicalConcern: "",
-    message: ""
-  });
+  const [formData, setFormData] = useState({ fullName: "", email: "", phone: "", countryCode: "+91", organization: "", city: "", category: "Hospital Operations Management", patientCountry: "India", medicalConcern: "", message: "" });
+  const isBusiness = activeTab === "b2b";
 
-  if (!isOpen) return null;
+  useEffect(() => {
+    const element = dialog.current;
+    const previousFocus = document.activeElement as HTMLElement | null;
+    const previousOverflow = document.body.style.overflow;
+    element?.showModal();
+    heading.current?.focus({ preventScroll: true });
+    document.body.style.overflow = "hidden";
+    return () => {
+      element?.close();
+      document.body.style.overflow = previousOverflow;
+      previousFocus?.focus({ preventScroll: true });
+    };
+  }, []);
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  function selectType(type: EnquiryType) { setActiveTab(type); setErrorMessage(""); }
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    setErrorMessage("");
+    if (formData.phone.length !== 10) { setErrorMessage("Please enter a valid 10-digit mobile number."); return; }
     setLoading(true);
-    setErrorMessage("");
-
-    if (formData.phone.length !== 10) {
-      setErrorMessage("Please enter a valid 10-digit mobile number.");
-      setLoading(false);
-      return;
-    }
-
+    const phone = `${formData.countryCode} ${formData.phone}`;
+    const sourceUrl = window.location.pathname;
+    const payload = isBusiness
+      ? { fullName: formData.fullName, email: formData.email, phone, organization: formData.organization, city: "", serviceType: formData.category, message: formData.message, category: "b2b", sourceUrl }
+      : { fullName: formData.fullName, email: formData.email, phone, city: formData.city, country: formData.patientCountry, isInternational: formData.patientCountry !== "India", medicalConcern: [formData.medicalConcern, formData.message].filter(Boolean).join("\n\n"), specialty: "Super-Specialty Care", timeline: "Immediate / Within 1 Week", sourceUrl };
     try {
-      const isB2B = activeTab === "b2b";
-      const formattedPhone = `${formData.countryCode} ${formData.phone}`;
-      const payload = isB2B
-        ? {
-            fullName: formData.fullName,
-            email: formData.email,
-            phone: formattedPhone,
-            organization: formData.organization || "Independent Healthcare Entity",
-            city: formData.city || "",
-            serviceType: formData.category,
-            message: formData.message,
-            category: "b2b" as const,
-            sourceUrl: typeof window !== "undefined" ? window.location.pathname : "",
-          }
-        : {
-            fullName: formData.fullName,
-            email: formData.email || "",
-            phone: formattedPhone,
-            city: formData.city || "Delhi NCR",
-            country: formData.patientCountry || "India",
-            isInternational: formData.patientCountry !== "India",
-            medicalConcern: formData.medicalConcern || "Specialist Doctor Consultation",
-            specialty: "Super-Specialty Care",
-            timeline: "Immediate / Within 1 Week",
-            sourceUrl: typeof window !== "undefined" ? window.location.pathname : "",
-          };
+      const response = await fetch("/api/enquiries", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ type: isBusiness ? "business" : "patient", payload }) });
+      const result = await response.json();
+      if (!response.ok || !result.success) throw new Error(result.error || "Unable to send your enquiry. Please try again.");
+      setReferenceId(result.referenceId || "DAC-CONFIRMED");
+      dialog.current?.querySelector(".enquiry-scroll")?.scrollTo({ top: 0 });
+    } catch (error) { setErrorMessage(error instanceof Error ? error.message : "Unable to connect. Please try again."); }
+    finally { setLoading(false); }
+  }
 
-      const res = await fetch("/api/enquiries", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          type: isB2B ? "business" : "patient",
-          payload,
-        }),
-      });
-
-      const result = await res.json();
-
-      if (!res.ok || !result.success) {
-        setErrorMessage(
-          result.error || "Unable to log enquiry. Please check your inputs and try again."
-        );
-      } else {
-        setReferenceId(result.referenceId || "DAC-CONFIRMED");
-        setIsSubmitted(true);
-      }
-    } catch {
-      setErrorMessage("Network connection error. Please try again shortly.");
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const resetForm = () => {
-    setIsSubmitted(false);
-    setReferenceId("");
-    setErrorMessage("");
-    onClose();
-  };
-
-  return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/70 backdrop-blur-sm animate-in fade-in duration-200">
-      <div 
-        className="relative w-full max-w-2xl glass-panel rounded-2xl shadow-2xl border overflow-hidden"
-        onClick={(e) => e.stopPropagation()}
-      >
-        {/* Modal Header */}
-        <div className="bg-[#0A1E3F] text-white p-6 sm:p-7 relative">
-          <button
-            onClick={resetForm}
-            className="absolute top-5 right-5 text-slate-300 hover:text-white p-1 rounded-lg hover:bg-white/10 transition-colors"
-            aria-label="Close dialog"
-          >
-            <X className="w-5 h-5" />
-          </button>
-          
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-teal-500/20 text-teal-300 border border-teal-500/30 mb-2">
-            Dr. AllCare • We Care Always For You
-          </div>
-          <h3 className="text-xl sm:text-2xl font-bold tracking-tight">
-            {activeTab === "b2b" ? "B2B Healthcare & Institutional Enquiry" : "Patient Treatment & Surgery Consultation"}
-          </h3>
-          <p className="text-sm text-slate-300 mt-1">
-            Connect directly with our corporate healthcare management team or dedicated patient coordinators.
-          </p>
-
-          {/* Toggle Tabs */}
-          {!isSubmitted && (
-            <div className="flex bg-[#061226]/80 p-1 rounded-xl mt-5 border border-slate-700">
-              <button
-                type="button"
-                onClick={() => setActiveTab("b2b")}
-                className={`flex-1 py-2 text-xs sm:text-sm font-semibold rounded-lg transition-all ${
-                  activeTab === "b2b"
-                    ? "bg-teal-600 text-white shadow"
-                    : "text-slate-300 hover:text-white"
-                }`}
-              >
-                B2B & Hospital Solutions
-              </button>
-              <button
-                type="button"
-                onClick={() => setActiveTab("patient")}
-                className={`flex-1 py-2 text-xs sm:text-sm font-semibold rounded-lg transition-all ${
-                  activeTab === "patient"
-                    ? "bg-teal-600 text-white shadow"
-                    : "text-slate-300 hover:text-white"
-                }`}
-              >
-                Patient Treatment & Surgery
-              </button>
+  return <dialog ref={dialog} className="enquiry-dialog" aria-labelledby="enquiry-title" aria-describedby="enquiry-description"
+    onCancel={(event) => { event.preventDefault(); if (!loading) onClose(); }}
+    onClick={(event) => {
+      if (event.target !== event.currentTarget || loading) return;
+      const bounds = event.currentTarget.getBoundingClientRect();
+      if (event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom) onClose();
+    }}>
+    <button type="button" className="enquiry-close" onClick={onClose} disabled={loading} aria-label="Close enquiry"><X size={21} /></button>
+    <div className="enquiry-scroll">
+      <header className="enquiry-header">
+        <span className="enquiry-eyebrow"><ShieldCheck size={16} aria-hidden="true" />DR. ALLCARE · HERE TO HELP</span>
+        <h2 id="enquiry-title" tabIndex={-1} ref={heading}>{referenceId ? "Thank you for reaching out." : isBusiness ? "Business & hospital enquiry" : "Let’s plan your care."}</h2>
+        <p id="enquiry-description">{referenceId ? "Your enquiry has been received by our team." : isBusiness ? "Tell us what your organization needs. Our healthcare team will help with the next step." : "Share a few details so our patient care team can help you find the right support."}</p>
+        {!referenceId && <div className="enquiry-types" role="group" aria-label="Enquiry type">
+          <button type="button" aria-pressed={isBusiness} onClick={() => selectType("b2b")} disabled={loading}><Building2 size={18} aria-hidden="true" /><span>Business & hospitals</span></button>
+          <button type="button" aria-pressed={!isBusiness} onClick={() => selectType("patient")} disabled={loading}><HeartPulse size={18} aria-hidden="true" /><span>Patient care</span></button>
+        </div>}
+      </header>
+      <div className="enquiry-body">
+        {referenceId ? <div className="enquiry-success" role="status">
+          <CheckCircle2 size={48} aria-hidden="true" />
+          <h3>Enquiry sent successfully</h3>
+          <p>Thank you, {formData.fullName}. Our team will contact you using the details you provided.</p>
+          <div className="enquiry-reference">Reference: <strong>{referenceId}</strong></div>
+          <button type="button" className="enquiry-submit" onClick={onClose}>Done</button>
+        </div> : <form onSubmit={handleSubmit} aria-busy={loading}>
+          <p className="enquiry-required-note">Fields marked <span>*</span> are required.</p>
+          {errorMessage && <div className="enquiry-error" role="alert"><AlertCircle size={19} aria-hidden="true" /><span>{errorMessage}</span></div>}
+          <fieldset disabled={loading} className="enquiry-fields">
+            <legend className="sr-only">Your enquiry details</legend>
+            <div className="enquiry-grid">
+              <div className="enquiry-field"><label htmlFor="enquiry-name">Full name <span>*</span></label><input id="enquiry-name" name="fullName" autoComplete="name" minLength={2} maxLength={100} required placeholder="Your full name" value={formData.fullName} onChange={(e) => setFormData({ ...formData, fullName: e.target.value })} /></div>
+              <div className="enquiry-field"><label htmlFor="enquiry-email">{isBusiness ? "Work email" : "Email address"} {isBusiness ? <span>*</span> : <small>(optional)</small>}</label><input id="enquiry-email" name="email" type="email" maxLength={254} autoComplete="email" required={isBusiness} placeholder={isBusiness ? "you@organization.com" : "you@example.com"} value={formData.email} onChange={(e) => setFormData({ ...formData, email: e.target.value })} /></div>
+              <div className="enquiry-field"><label htmlFor="enquiry-phone">Phone / WhatsApp <span>*</span></label><PhoneInputWithCountry id="enquiry-phone" value={formData.phone} countryCode={formData.countryCode} onChangePhone={(phone) => setFormData({ ...formData, phone })} onChangeCountryCode={(countryCode) => setFormData({ ...formData, countryCode })} /></div>
+              <div className="enquiry-field"><label htmlFor="enquiry-organization">{isBusiness ? "Hospital / company" : "Current city / state"} <span>*</span></label><input id="enquiry-organization" name={isBusiness ? "organization" : "city"} autoComplete={isBusiness ? "organization" : "address-level2"} minLength={2} maxLength={isBusiness ? 150 : 100} required placeholder={isBusiness ? "Organization name" : "e.g. New Delhi"} value={isBusiness ? formData.organization : formData.city} onChange={(e) => setFormData({ ...formData, [isBusiness ? "organization" : "city"]: e.target.value })} /></div>
             </div>
-          )}
-        </div>
-
-        {/* Modal Body */}
-        <div className="p-6 sm:p-7 max-h-[75vh] overflow-y-auto">
-          {isSubmitted ? (
-            <div className="text-center py-8 px-4">
-              <div className="w-16 h-16 bg-teal-50 text-teal-600 rounded-full flex items-center justify-center mx-auto mb-3 border border-teal-200">
-                <CheckCircle2 className="w-10 h-10" />
-              </div>
-              <div className="inline-block bg-teal-50 border border-teal-200 px-3.5 py-1 rounded-full text-xs font-mono font-bold text-teal-800 mb-3">
-                Ref ID: {referenceId}
-              </div>
-              <h4 className="text-xl font-bold text-slate-900">Enquiry Successfully Logged</h4>
-              <p className="text-slate-600 text-sm mt-2 max-w-md mx-auto">
-                Thank you, <span className="font-semibold text-slate-800">{formData.fullName}</span>. Your enquiry for{" "}
-                <span className="font-semibold text-teal-700">{activeTab === "b2b" ? formData.category : formData.medicalConcern || "Specialist Care"}</span>{" "}
-                has been safely registered in the Dr. AllCare database.
-              </p>
-              <div className="bg-slate-50 border border-slate-200 rounded-xl p-4 mt-6 text-left max-w-md mx-auto text-xs text-slate-600 space-y-1">
-                <div className="font-semibold text-slate-800 mb-1">Expected Next Steps:</div>
-                <div>• Initial review by clinical operations lead within 4 business hours.</div>
-                <div>• Dedicated phone consultation to finalize scope and documentation.</div>
-                <div>• Official proposal / treatment itinerary dispatched via secure channel.</div>
-              </div>
-              <button
-                onClick={resetForm}
-                className="mt-6 px-6 py-2.5 bg-[#0A1E3F] hover:bg-[#162F58] text-white text-sm font-semibold rounded-xl transition-all shadow"
-              >
-                Done & Close Window
-              </button>
-            </div>
-          ) : (
-            <form onSubmit={handleSubmit} className="space-y-4">
-              {errorMessage && (
-                <div className="p-3.5 bg-red-50 border border-red-200 text-red-800 rounded-xl text-xs flex items-start gap-2.5 animate-in fade-in">
-                  <AlertCircle className="w-4 h-4 text-red-600 flex-shrink-0 mt-0.5" />
-                  <span className="leading-relaxed">{errorMessage}</span>
-                </div>
-              )}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1">
-                    Contact Name *
-                  </label>
-                  <div className="relative">
-                    <User className="w-4 h-4 text-slate-400 absolute left-3 top-3" />
-                    <input
-                      required
-                      type="text"
-                      placeholder="e.g. Dr. Rajesh Sharma / Mr. Arun Verma"
-                      value={formData.fullName}
-                      onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
-                      className="w-full pl-9 pr-3 py-2 text-sm border border-slate-300 rounded-xl focus:ring-2 focus:ring-teal-500 focus:border-teal-500 outline-none transition"
-                    />
-                  </div>
-                </div>
-
-                <div>
-                  <label className="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1">
-                    Official Email *
-                  </label>
-                  <div className="relative">
-                    <Mail className="w-4 h-4 text-slate-400 absolute left-3 top-3" />
-                    <input
-                      required
-                      type="email"
-                      placeholder="name@organization.com"
-                      value={formData.email}
-                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className="w-full pl-9 pr-3 py-2 text-sm border border-slate-300 rounded-xl focus:ring-2 focus:ring-teal-500 focus:border-teal-500 outline-none transition"
-                    />
-                  </div>
-                </div>
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1">
-                    Phone / WhatsApp *
-                  </label>
-                  <PhoneInputWithCountry
-                    value={formData.phone}
-                    countryCode={formData.countryCode}
-                    onChangePhone={(val) => setFormData({ ...formData, phone: val })}
-                    onChangeCountryCode={(code) => setFormData({ ...formData, countryCode: code })}
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1">
-                    {activeTab === "b2b" ? "Hospital / Company Name *" : "Current City / State *"}
-                  </label>
-                  <div className="relative">
-                    {activeTab === "b2b" ? (
-                      <Building className="w-4 h-4 text-slate-400 absolute left-3 top-3" />
-                    ) : (
-                      <MapPin className="w-4 h-4 text-slate-400 absolute left-3 top-3" />
-                    )}
-                    <input
-                      required
-                      type="text"
-                      placeholder={activeTab === "b2b" ? "Hospital, Factory, or Corporate name" : "e.g. Patna, Patna (Bihar) or Dhaka"}
-                      value={formData.organization}
-                      onChange={(e) => setFormData({ ...formData, organization: e.target.value })}
-                      className="w-full pl-9 pr-3 py-2 text-sm border border-slate-300 rounded-xl focus:ring-2 focus:ring-teal-500 focus:border-teal-500 outline-none transition"
-                    />
-                  </div>
-                </div>
-              </div>
-
-              {activeTab === "b2b" ? (
-                <div>
-                  <label className="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1">
-                    Service Vertical of Interest *
-                  </label>
-                  <select
-                    value={formData.category}
-                    onChange={(e) => setFormData({ ...formData, category: e.target.value })}
-                    className="w-full px-3 py-2 text-sm border border-slate-300 rounded-xl focus:ring-2 focus:ring-teal-500 focus:border-teal-500 outline-none transition bg-white"
-                  >
-                    <option value="Hospital Operations Management">Hospital Operations Management & Turnaround</option>
-                    <option value="Corporate Healthcare & Factory Clinics">Corporate Healthcare & Factory On-Site Clinics</option>
-                    <option value="Healthcare Staffing (Doctors & Nurses)">Healthcare Staffing (Surgeons, Doctors & ICU Nurses)</option>
-                    <option value="Hospital Setup & Turnkey Infrastructure">Hospital Setup, Architecture & Licensing</option>
-                    <option value="Medical Equipment Procurement & Leasing">Medical Equipment Procurement & Maintenance</option>
-                    <option value="Institutional Healthcare Partnership">Institutional Healthcare Partnership</option>
-                  </select>
-                </div>
-              ) : (
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1">
-                      Patient Origin *
-                    </label>
-                    <select
-                      value={formData.patientCountry}
-                      onChange={(e) => setFormData({ ...formData, patientCountry: e.target.value })}
-                      className="w-full px-3 py-2 text-sm border border-slate-300 rounded-xl focus:ring-2 focus:ring-teal-500 focus:border-teal-500 outline-none transition bg-white"
-                    >
-                      <option value="India">Domestic Patient (Within India)</option>
-                      <option value="Bangladesh">Bangladesh</option>
-                      <option value="Nepal">Nepal</option>
-                      <option value="Middle East">Middle East (UAE / Saudi / Oman / Qatar)</option>
-                      <option value="East Africa">East Africa (Kenya, Tanzania, Uganda, Nigeria)</option>
-                      <option value="Central Asia">Central Asia (Uzbekistan, Kazakhstan)</option>
-                      <option value="Other International">Other International</option>
-                    </select>
-                  </div>
-                  <div>
-                    <label className="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1">
-                      Treatment / Surgery Required *
-                    </label>
-                    <input
-                      required
-                      type="text"
-                      placeholder="e.g. Cardiac Bypass, Knee Replacement, Oncology"
-                      value={formData.medicalConcern}
-                      onChange={(e) => setFormData({ ...formData, medicalConcern: e.target.value })}
-                      className="w-full px-3 py-2 text-sm border border-slate-300 rounded-xl focus:ring-2 focus:ring-teal-500 focus:border-teal-500 outline-none transition"
-                    />
-                  </div>
-                </div>
-              )}
-
-              <div>
-                <label className="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1">
-                  Brief Requirements / Message
-                </label>
-                <textarea
-                  rows={3}
-                  placeholder={
-                    activeTab === "b2b"
-                      ? "Briefly describe bed count, current operational challenges, required timeline or staffing numbers..."
-                      : "Briefly explain patient symptoms, diagnostic reports available, preferred city (Delhi, Mumbai, etc.)..."
-                  }
-                  value={formData.message}
-                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  className="w-full px-3 py-2 text-sm border border-slate-300 rounded-xl focus:ring-2 focus:ring-teal-500 focus:border-teal-500 outline-none transition resize-none"
-                ></textarea>
-              </div>
-
-              <div className="flex items-center gap-2 text-xs text-slate-500 pt-1">
-                <AlertCircle className="w-4 h-4 text-teal-600 flex-shrink-0" />
-                <span>Confidential corporate & clinical protocol. Non-disclosure protected.</span>
-              </div>
-
-              <div className="pt-2">
-                <button
-                  type="submit"
-                  disabled={loading}
-                  className="w-full py-3 px-6 bg-teal-600 hover:bg-teal-700 disabled:opacity-70 disabled:cursor-not-allowed text-white font-semibold text-sm rounded-xl transition-all shadow-md flex items-center justify-center gap-2"
-                >
-                  {loading ? (
-                    <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
-                  ) : (
-                    <Send className="w-4 h-4" />
-                  )}
-                  <span>
-                    {loading
-                      ? "Submitting to Database..."
-                      : activeTab === "b2b"
-                      ? "Submit Business Enquiry"
-                      : "Request Treatment Consultation"}
-                  </span>
-                </button>
-              </div>
-            </form>
-          )}
-        </div>
+            {isBusiness ? <div className="enquiry-field"><label htmlFor="enquiry-service">Service of interest <span>*</span></label><select id="enquiry-service" name="service" required value={formData.category} onChange={(e) => setFormData({ ...formData, category: e.target.value })}>
+              <option value="Hospital Operations Management">Hospital management</option><option value="Corporate Healthcare & Factory Clinics">Corporate healthcare & factory clinics</option><option value="Healthcare Staffing (Doctors & Nurses)">Healthcare staffing</option><option value="Hospital Setup & Turnkey Infrastructure">Hospital setup & consultancy</option><option value="Medical Equipment Procurement & Leasing">Medical equipment solutions</option><option value="Institutional Healthcare Partnership">Institutional partnerships</option>
+            </select></div> : <div className="enquiry-grid">
+              <div className="enquiry-field"><label htmlFor="enquiry-country">Patient location <span>*</span></label><select id="enquiry-country" name="country" value={formData.patientCountry} onChange={(e) => setFormData({ ...formData, patientCountry: e.target.value })}><option>India</option><option>Bangladesh</option><option>Nepal</option><option>Middle East</option><option>East Africa</option><option>Central Asia</option><option>Other International</option></select></div>
+              <div className="enquiry-field"><label htmlFor="enquiry-treatment">Treatment needed <span>*</span></label><input id="enquiry-treatment" name="medicalConcern" minLength={3} maxLength={200} required placeholder="e.g. Knee replacement" value={formData.medicalConcern} onChange={(e) => setFormData({ ...formData, medicalConcern: e.target.value })} /></div>
+            </div>}
+            <div className="enquiry-field"><label htmlFor="enquiry-message">How can we help? <small>(optional)</small></label><textarea id="enquiry-message" name="message" rows={3} maxLength={isBusiness ? 2000 : 1700} placeholder={isBusiness ? "Tell us about your requirements and preferred timeline." : "Share any additional details about the care you need."} value={formData.message} onChange={(e) => setFormData({ ...formData, message: e.target.value })} /></div>
+            <p className="enquiry-privacy"><ShieldCheck size={17} aria-hidden="true" /><span>Our team will use these details to respond to your enquiry.</span></p>
+            <button className="enquiry-submit" type="submit" disabled={loading}>{loading && <LoaderCircle size={19} className="enquiry-spinner" aria-hidden="true" />}{loading ? "Sending enquiry…" : isBusiness ? "Send business enquiry" : "Request care support"}</button>
+          </fieldset>
+        </form>}
       </div>
     </div>
-  );
+  </dialog>;
 }

@@ -131,16 +131,16 @@ export default function HomeExperience({ onOpenModal }: HomeExperienceProps) {
 
       <section className="care-content relative z-20 mx-auto -mt-6 w-full max-w-7xl px-4 sm:-mt-7 sm:px-6 lg:px-8">
         <div className="flex flex-col items-center gap-3 rounded-2xl border glass-panel p-2 sm:flex-row sm:rounded-full sm:p-2.5">
-          <label className="flex w-full flex-1 items-center gap-3 pl-3 sm:pl-4">
+          <label className="care-search flex min-w-0 w-full flex-1 items-center gap-3 pl-3 sm:pl-4">
             <Search className="h-5 w-5 shrink-0 text-slate-400" aria-hidden="true" />
             <input
               ref={searchInputRef}
               type="search"
               value={search}
               onChange={(event) => setSearch(event.target.value)}
-              placeholder="Search doctors, treatments, hospitals, or services..."
+              placeholder="Search healthcare services…"
               aria-label="Search healthcare services"
-              className="w-full bg-transparent py-2 text-xs text-slate-800 outline-none placeholder:text-slate-400 sm:text-sm"
+              className="min-w-0 w-full bg-transparent py-2 text-xs text-slate-800 outline-none placeholder:text-slate-400 sm:text-sm"
             />
             {search && (
               <button

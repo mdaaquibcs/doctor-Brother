@@ -41,7 +41,7 @@ export default function DomesticPatientsPage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6 text-xs text-slate-600">
+          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6 text-xs text-slate-600">
             <div className="p-4 bg-slate-50 rounded-2xl border border-slate-100 space-y-2">
               <div className="w-8 h-8 rounded-full bg-teal-100 text-teal-800 font-bold flex items-center justify-center">1</div>
               <div className="font-bold text-slate-900 text-sm">Medical Review</div>

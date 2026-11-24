@@ -75,7 +75,7 @@ export default function CareersPage() {
           {jobs.map((job, idx) => (
             <div key={idx} className="care-card p-6 rounded-2xl border border-slate-200/90 shadow-sm flex flex-col md:flex-row items-start md:items-center justify-between gap-4 hover:shadow-md transition">
               <div className="space-y-1.5 max-w-2xl">
-                <div className="flex items-center gap-2">
+                <div className="flex flex-wrap items-center gap-x-2 gap-y-1.5">
                   <span className="text-[10px] font-bold uppercase tracking-wider text-teal-700 bg-teal-50 px-2 py-0.5 rounded border border-teal-200">
                     {job.dept}
                   </span>

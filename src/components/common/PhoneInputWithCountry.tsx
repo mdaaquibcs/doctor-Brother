@@ -1,7 +1,8 @@
 "use client";
 
 import React from "react";
-import { Phone, ChevronDown } from "lucide-react";
+import { ChevronDown } from "lucide-react";
+import "./PhoneInputWithCountry.css";
 
 export interface CountryCodeOption {
   code: string;
@@ -47,7 +48,7 @@ export default function PhoneInputWithCountry({
   onChangePhone,
   onChangeCountryCode,
   required = true,
-  placeholder = "Enter 10-digit mobile number",
+  placeholder = "Mobile number",
   size = "md",
   className = "",
   id,
@@ -100,72 +101,16 @@ export default function PhoneInputWithCountry({
     onChangePhone(digitsOnly);
   };
 
-  const isSmall = size === "sm";
-
+  const selectedCountry = POPULAR_COUNTRY_CODES.find((item) => item.code === countryCode);
   return (
-    <div
-      className={`relative flex items-center w-full border border-slate-300 rounded-xl bg-white transition focus-within:ring-2 focus-within:ring-teal-500 focus-within:border-teal-500 overflow-hidden shadow-xs ${className}`}
-    >
-      {/* Left Icon */}
-      <div className="pl-3 text-slate-400 flex items-center pointer-events-none select-none">
-        <Phone className={isSmall ? "w-3.5 h-3.5" : "w-4 h-4"} />
-      </div>
-
-      {/* 10-Digit Numeric Input */}
-      <input
-        id={id}
-        name={name}
-        required={required}
-        type="tel"
-        inputMode="numeric"
-        autoComplete="tel-national"
-        pattern="[0-9]{10}"
-        maxLength={10}
-        minLength={10}
-        placeholder={placeholder}
-        value={value}
-        onKeyDown={handleKeyDown}
-        onChange={handleChange}
-        onPaste={handlePaste}
-        className={`flex-1 pl-2.5 pr-2 outline-none bg-transparent text-slate-900 placeholder-slate-400 font-medium tracking-wide ${
-          isSmall ? "py-2 text-xs" : "py-2 text-sm"
-        }`}
-      />
-
-      {/* Dynamic Digit Counter */}
-      {value.length > 0 && (
-        <span
-          className={`text-[10px] font-bold px-1.5 py-0.5 rounded mr-1.5 transition select-none ${
-            value.length === 10
-              ? "text-emerald-700 bg-emerald-50 border border-emerald-200"
-              : "text-amber-700 bg-amber-50 border border-amber-200"
-          }`}
-          title={`${value.length} of 10 digits`}
-        >
-          {value.length}/10
-        </span>
-      )}
-
-      {/* Right-Side Country Code Select */}
-      <div className="relative border-l border-slate-200 bg-slate-50/90 hover:bg-slate-100 transition-colors flex items-center self-stretch">
-        <select
-          value={countryCode}
-          onChange={(e) => onChangeCountryCode(e.target.value)}
-          aria-label="Country Code"
-          title="Select Country Code"
-          className={`bg-transparent appearance-none font-semibold text-slate-700 cursor-pointer outline-none pl-2.5 pr-6 ${
-            isSmall ? "py-2 text-xs" : "py-2 text-sm"
-          }`}
-        >
-          {POPULAR_COUNTRY_CODES.map((item) => (
-            <option key={item.code} value={item.code} className="text-slate-900 py-1">
-              {item.flag} {item.code} ({item.name})
-            </option>
-          ))}
+    <div className={`phone-control phone-control-${size} ${className}`}>
+      <div className="phone-country">
+        <span className="phone-country-display" aria-hidden="true"><span>{selectedCountry?.flag}</span>{countryCode}<ChevronDown size={14} /></span>
+        <select value={countryCode} onChange={(e) => onChangeCountryCode(e.target.value)} aria-label="Country calling code" autoComplete="tel-country-code">
+          {POPULAR_COUNTRY_CODES.map((item) => <option key={item.code} value={item.code}>{item.name} ({item.code})</option>)}
         </select>
-        {/* Dropdown Chevron */}
-        <ChevronDown className="w-3.5 h-3.5 text-slate-400 pointer-events-none absolute right-1.5 top-1/2 -translate-y-1/2" />
       </div>
+      <input id={id} name={name} aria-label={id ? undefined : "Phone / WhatsApp"} required={required} type="tel" inputMode="numeric" autoComplete="tel-national" pattern="[0-9]{10}" maxLength={10} minLength={10} title="Enter a 10-digit mobile number" placeholder={placeholder} value={value} onKeyDown={handleKeyDown} onChange={handleChange} onPaste={handlePaste} />
     </div>
   );
 }

@@ -161,3 +161,65 @@
 @media (max-width:1000px) { .admin-sidebar { width:220px; padding-inline:12px; }.admin-main-shell { margin-left:220px; }.admin-stats { grid-template-columns:repeat(2,minmax(0,1fr)); }.admin-table-controls { flex-wrap:wrap; }.admin-search { flex-basis:100%; }.admin-login-story { padding:36px 8%; }.admin-login-form-area { padding-inline:9%; }.admin-login-story h1 { font-size:34px; } }
 @media (max-width:760px) { .admin-login { display:block; }.admin-login-story { display:none; }.admin-login-form-area { min-height:100dvh; padding:26px 24px; }.admin-login-card { padding:50px 0; }.admin-sidebar { transform:translateX(-100%); width:244px; transition:transform 180ms; }.admin-sidebar-open { transform:translateX(0); }.admin-nav-backdrop { position:fixed; inset:0; z-index:35; background:#0c203c66; }.admin-main-shell { margin-left:0; }.admin-topbar { height:70px; padding:0 18px; }.admin-mobile-toggle, .admin-mobile-close { display:grid; place-items:center; padding:5px; }.admin-account div { display:none; }.admin-main { padding:24px 16px; }.admin-page-heading { flex-direction:column; align-items:flex-start; gap:16px; }.admin-page-heading h1 { font-size:28px; }.admin-page-heading>button { width:100%; }.admin-stat-card>div { font-size:12px; }.admin-stat-card>p { font-size:11px; }.admin-stat-icon { width:30px; height:30px; }.admin-focus-card { flex-wrap:wrap; }.admin-focus-card>div { min-width:180px; }.admin-focus-card button { margin-left:50px; }.admin-panel-heading { padding:20px 16px; }.admin-updated { display:none; }.admin-table-controls { padding:0 16px 18px; gap:8px; }.admin-select { flex:1; min-width:0; }.admin-select select { width:100%; min-width:0; max-width:100%; }.admin-pagination { padding:15px; flex-wrap:wrap; }.admin-workspace-footer { flex-wrap:wrap; }.admin-detail-header,.admin-detail-body { padding:23px; } }
 @media (prefers-reduced-motion:reduce) { .admin-spin { animation:none; }.admin-stat-card, .admin-sidebar { transition:none; }.admin-stat-card:hover { transform:none; } }
+
+/* Phone layouts use enquiry cards, with the desktop table retained above 760px. */
+.admin-enquiry-cards { display:none; }
+.admin-sidebar { overflow-y:auto; overscroll-behavior:contain; }
+.admin-topbar-location, .admin-account, .admin-page-heading>div, .admin-panel-heading>div { min-width:0; }
+.admin-field input, .admin-search input, .admin-select select, .admin-detail-body select { font-size:16px; }
+.admin-field svg { flex-shrink:0; }
+.admin-select select { min-height:44px; }
+.admin-mobile-toggle, .admin-mobile-close, .admin-detail-header>button, .admin-pagination button, .admin-field button { min-width:44px; min-height:44px; }
+.admin-detail-dialog { overflow-y:auto; overscroll-behavior:contain; padding-bottom:env(safe-area-inset-bottom); }
+.admin-detail-header { position:sticky; top:0; z-index:1; background:#fff; }
+.admin-detail-header>div { min-width:0; overflow-wrap:anywhere; }
+.admin-detail-body select { appearance:none; padding-right:40px; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='%23475f72' stroke-width='2'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E"); background-repeat:no-repeat; background-position:right 12px center; }
+@media (max-width:760px) {
+  .admin-sidebar { visibility:hidden; max-width:calc(100vw - 44px); padding-bottom:max(20px,env(safe-area-inset-bottom)); }
+  .admin-sidebar-open { visibility:visible; }
+  .admin-main { padding:22px 16px; }
+  .admin-topbar { gap:12px; }
+  .admin-topbar-location { gap:6px; font-size:14px; }
+  .admin-topbar-location>span { display:none; }
+  .admin-account-avatar { flex-shrink:0; }
+  .admin-stats { gap:10px; }
+  .admin-stat-card { padding:14px; min-width:0; }
+  .admin-stat-card>div { align-items:flex-start; font-size:14px; line-height:1.5; }
+  .admin-stat-card>p { font-size:12px; line-height:1.6; }
+  .admin-stat-icon { display:none; }
+  .admin-focus-card>div { min-width:0; flex-basis:calc(100% - 60px); }
+  .admin-focus-card strong { font-size:15px; }
+  .admin-focus-card p { font-size:14px; }
+  .admin-focus-card button { margin-left:0; min-height:44px; font-size:14px; }
+  .admin-table-controls { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .admin-search { grid-column:1/-1; min-width:0; }
+  .admin-search input { font-size:16px; }
+  .admin-select { padding-inline:7px; }
+  .admin-select>svg { display:none; }
+  .admin-select select { padding-inline:0; font-size:16px; }
+  .admin-table-scroll { display:none; }
+  .admin-enquiry-cards { display:grid; gap:14px; padding:0 16px 18px; }
+  .admin-enquiry-card { padding:16px; border:1px solid #dce6ed; border-radius:14px; background:#fff; min-width:0; }
+  .admin-enquiry-card .admin-contact-cell { align-items:flex-start; }
+  .admin-enquiry-card .admin-contact-cell>div { min-width:0; }
+  .admin-enquiry-card h3 { font-size:16px; font-weight:650; line-height:1.5; overflow-wrap:anywhere; }
+  .admin-enquiry-card .admin-contact-cell div>span { max-width:none; font-size:13px; overflow-wrap:anywhere; }
+  .admin-card-subject { font-size:15px; line-height:1.6; margin-top:14px; overflow-wrap:anywhere; }
+  .admin-enquiry-card .admin-reference { font-size:12px; overflow-wrap:anywhere; }
+  .admin-enquiry-card dl { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px 10px; margin-top:18px; }
+  .admin-enquiry-card dt { font-size:12px; color:#718296; margin-bottom:6px; }
+  .admin-enquiry-card dd { font-size:14px; line-height:1.5; overflow-wrap:anywhere; }
+  .admin-enquiry-card .admin-status, .admin-enquiry-card .admin-category, .admin-enquiry-card .admin-priority { font-size:14px; }
+  .admin-enquiry-card>.admin-secondary-button { width:100%; min-height:46px; margin-top:18px; }
+  .admin-panel-heading p, .admin-updated { font-size:14px; line-height:1.6; }
+  .admin-pagination { font-size:13px; }
+  .admin-detail-body dl { grid-template-columns:minmax(0,1fr); gap:5px; font-size:15px; }
+  .admin-detail-body dd { margin-bottom:12px; }
+  .admin-detail-actions>* { flex:1; min-height:48px; padding-inline:10px; }
+  .admin-detail-contact a { min-height:44px; font-size:16px; }
+  .admin-login-form-area { padding-inline:22px; padding-bottom:max(24px,env(safe-area-inset-bottom)); }
+  .admin-login-card { padding-block:36px; }
+  .admin-login-card h2 { font-size:32px; }
+  .admin-field { padding-inline:12px; gap:8px; }
+}
+@media (max-width:360px) { .admin-main { padding-inline:12px; }.admin-stats { grid-template-columns:1fr 1fr; }.admin-enquiry-cards { padding-inline:12px; }.admin-enquiry-card { padding:13px; }.admin-table-controls { grid-template-columns:minmax(0,1fr); }.admin-detail-header,.admin-detail-body { padding:20px; } }

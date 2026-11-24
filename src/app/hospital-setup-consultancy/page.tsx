@@ -41,7 +41,7 @@ export default function HospitalSetupPage() {
             </h3>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-5 gap-4 text-xs text-slate-600">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 text-xs text-slate-600">
             <div className="p-4 bg-slate-50 rounded-2xl border border-slate-100 space-y-1.5">
               <span className="text-sm font-bold text-teal-700">01. Feasibility</span>
               <p>Catchment area analysis, demographic disease burden, competitive benchmarking and financial CAPEX/OPEX model.</p>

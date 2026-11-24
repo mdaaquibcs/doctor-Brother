@@ -1,0 +1,50 @@
+/* Shared sizing rules for the public site, including all service and patient pages. */
+.care-page, .care-surface, .care-content, .care-hero-copy { min-width:0; }
+.care-content .grid>*, .care-content .flex>*, .care-hero-grid>*, .site-footer .grid>* { min-width:0; }
+.care-content h2, .care-content h3, .care-content p, .care-content li, .care-card, .care-hero-copy, .site-footer { overflow-wrap:anywhere; }
+.care-content button, .care-content a[class*="rounded"], .care-hero-actions>* { min-height:44px; }
+.care-content form input:not([type="checkbox"]):not([type="radio"]), .care-content form select, .care-content form textarea, .care-search input { min-width:0; max-width:100%; min-height:48px; font-size:16px; line-height:1.5; }
+.care-content form input:not([type="checkbox"]):not([type="radio"]), .care-content form textarea { background-color:#fff; color:#172b43; }
+.care-content form label { font-size:14px; line-height:1.5; letter-spacing:normal; text-transform:none; margin-bottom:8px; }
+.care-content form .relative>svg.absolute { top:15px; pointer-events:none; }
+.care-content form select { appearance:none; padding-right:42px; background-color:#fff; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='%23475f72' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E"); background-position:right 12px center; background-repeat:no-repeat; text-overflow:ellipsis; }
+.care-content form textarea { resize:vertical; min-height:112px; }
+.care-content form button[type="submit"] { min-height:50px; font-size:16px; }
+.care-contact-form { background:#fff; border-color:#dce7ed; }
+.care-content form input::placeholder, .care-content form textarea::placeholder, .care-search input::placeholder { color:#718296; opacity:1; }
+.care-content :focus-visible, .care-hero-copy :focus-visible { outline:3px solid #0d9488; outline-offset:3px; }
+.care-content .phone-control>input:focus-visible { outline:none; }
+.care-content .text-xs { font-size:14px; line-height:1.6; }
+.site-footer .footer-contact { overflow-wrap:anywhere; }
+.site-footer .footer-contact span { min-width:0; }
+@media (max-width:767px) {
+  .care-hero-container { padding-inline:20px; }
+  .care-hero-copy h1 { font-size:clamp(1.8rem,7.5vw,2.35rem); line-height:1.15; }
+  .care-page-hero-compact .care-hero-copy h1>span { display:block; margin-left:0; }
+  .care-eyebrow { border-radius:16px; line-height:1.5; font-size:13px; }
+  .care-hero-actions { align-items:stretch; }
+  .care-hero-actions>* { flex:1 1 180px; font-size:15px; min-height:48px; }
+  .care-breadcrumb { font-size:14px; line-height:1.5; gap:6px; }
+  .care-breadcrumb a { min-height:36px; }
+  .care-content.py-16, .care-content.py-20 { padding-block:36px; }
+  .care-content h2 { font-size:clamp(1.4rem,6vw,1.75rem); }
+  .care-content .care-card { border-radius:20px; }
+  .care-content .p-8, .care-content .p-10 { padding:22px; }
+  .care-content .p-6, .care-content .p-7 { padding:20px; }
+  .care-content button, .care-content a[class*="rounded"] { white-space:normal; line-height:1.5; }
+  .care-content .gap-10 { gap:28px; }
+  .care-content .space-y-16>:not(:last-child) { margin-block-end:36px; }
+  .site-footer .footer-glass { padding:22px 18px; border-radius:24px; }
+  .site-footer .footer-contact { padding-inline:12px; }
+  .site-footer nav a { font-size:14px; line-height:1.5; }
+}
+@media (max-width:360px) {
+  .care-hero-container { padding-inline:16px; }
+  .care-content .p-6, .care-content .p-7, .care-content .p-8, .care-content .p-10 { padding:16px; }
+  .site-footer .footer-glass { padding:20px 14px; }
+  .site-footer nav ul { column-gap:12px; }
+}
+@media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } }
+
+.care-content .flex>svg { flex-shrink:0; }
+@media (max-width:380px) { .treatment-feature .w-24 { width:64px; height:64px; }.care-content .glass-service-card .h-16 { width:48px; height:48px; } }

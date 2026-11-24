@@ -31,6 +31,7 @@ export default function Header({
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const headerRef = useRef<HTMLElement>(null);
   const navigationId = useId();
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     if (!activeDropdown && !mobileMenuOpen) return;
@@ -146,6 +147,7 @@ export default function Header({
           const target = event.target as HTMLElement;
           target.closest("[data-navigation-group]")?.querySelector<HTMLButtonElement>("button")?.focus();
           setActiveDropdown(null);
+          if (mobileMenuOpen) menuButtonRef.current?.focus();
           setMobileMenuOpen(false);
         }
       }}
@@ -276,7 +278,10 @@ export default function Header({
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             className="p-2 text-slate-700 hover:text-slate-900 rounded-lg hover:bg-slate-100"
-            aria-label="Toggle Navigation"
+            ref={menuButtonRef}
+            aria-label={mobileMenuOpen ? "Close navigation" : "Open navigation"}
+            aria-expanded={mobileMenuOpen}
+            aria-controls={`${navigationId}-mobile`}
           >
             {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
@@ -286,7 +291,7 @@ export default function Header({
 
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
-        <div className="site-navigation-mobilePanel xl:hidden border-t border-slate-200 p-5 space-y-4 max-h-[85vh] overflow-y-auto">
+        <div id={`${navigationId}-mobile`} className="site-navigation-mobilePanel xl:hidden border-t border-slate-200 p-5 space-y-4 max-h-[85vh] overflow-y-auto">
           <button
             onClick={() => {
               setMobileMenuOpen(false);

@@ -45,7 +45,7 @@ export default function AboutUsPage() {
               domestic & international patient treatment coordination.
             </p>
 
-            <div className="grid grid-cols-2 gap-4 pt-2">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
               <div className="care-card p-4  rounded-2xl border border-slate-200 shadow-sm">
                 <div className="text-2xl font-black text-[#0A1E3F]">100%</div>
                 <div className="text-xs font-semibold text-slate-700 mt-1">NABH / NABL Standards</div>

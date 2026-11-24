@@ -145,7 +145,7 @@ Contact our Enterprise Solutions Team at proposal@drallcare.com
 
       {/* Toast Notification */}
       {toastMessage && (
-        <div className="fixed bottom-6 right-6 z-50 bg-[#0A1E3F] text-white px-5 py-3 rounded-2xl shadow-2xl flex items-center gap-3 border border-teal-500/30 animate-in fade-in slide-in-from-bottom duration-300">
+        <div className="fixed bottom-4 left-4 right-4 sm:left-auto sm:bottom-6 sm:right-6 z-40 bg-[#0A1E3F] text-white px-5 py-3 rounded-2xl shadow-2xl flex items-center gap-3 border border-teal-500/30 animate-in fade-in slide-in-from-bottom duration-300">
           <CheckCircle2 className="w-5 h-5 text-teal-400 flex-shrink-0" />
           <span className="text-xs font-semibold">{toastMessage}</span>
         </div>
@@ -195,7 +195,7 @@ Contact our Enterprise Solutions Team at proposal@drallcare.com
             </div>
 
             {/* Right 8-Card Grid (4 cols x 2 rows) */}
-            <div className="w-full lg:w-[73%]">
+            <div className="w-full min-w-0 lg:flex-1">
               <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-3 sm:gap-3.5">
                 {corporateServices.map((service, idx) => (
                   <div 

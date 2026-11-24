@@ -146,9 +146,7 @@ export default function ContactEnquirySection() {
                   <div className="text-xs font-bold text-slate-500 uppercase tracking-wider">
                     Executive Communication
                   </div>
-                  <div className="text-sm font-bold text-[#0A1E3F] mt-0.5">
-                    solutions@drallcare.com
-                  </div>
+                  <a href="mailto:solutions@drallcare.com" className="block break-all text-sm font-bold text-[#0A1E3F] mt-0.5">solutions@drallcare.com</a>
                   <div className="text-xs text-slate-600 mt-1">
                     Formal RFPs, hospital management enquiries, and vendor partnerships.
                   </div>
@@ -159,7 +157,7 @@ export default function ContactEnquirySection() {
           </div>
 
           {/* Right Lead Capture Form */}
-          <div className="care-card lg:col-span-7  p-7 sm:p-9 rounded-3xl border border-slate-200/90 shadow-xl">
+          <div className="care-contact-form care-card lg:col-span-7 p-5 sm:p-9 rounded-3xl border border-slate-200/90 shadow-xl">
             {submitted ? (
               <div className="text-center py-12 px-4 space-y-4">
                 <div className="w-16 h-16 bg-teal-50 text-teal-600 rounded-full flex items-center justify-center mx-auto border border-teal-200">
@@ -195,7 +193,7 @@ export default function ContactEnquirySection() {
                 </div>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-4">
+              <form onSubmit={handleSubmit} className="care-form space-y-4">
                 <div className="border-b border-slate-100 pb-3">
                   <h3 className="text-xl font-bold text-[#0A1E3F]">
                     Submit Corporate or Institutional Requirement
@@ -214,7 +212,7 @@ export default function ContactEnquirySection() {
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
+                    <label htmlFor="contact-name" className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
                       Full Name *
                     </label>
                     <div className="relative">
@@ -222,7 +220,7 @@ export default function ContactEnquirySection() {
                       <input
                         required
                         type="text"
-                        placeholder="e.g. Dr. K. S. Murthy"
+                        id="contact-name" name="fullName" autoComplete="name" placeholder="Your full name"
                         value={formData.name}
                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                         className="w-full pl-9 pr-3 py-2 text-sm border border-slate-300 rounded-xl focus:ring-2 focus:ring-teal-500 outline-none"
@@ -231,7 +229,7 @@ export default function ContactEnquirySection() {
                   </div>
 
                   <div>
-                    <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
+                    <label htmlFor="contact-email" className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
                       Corporate / Official Email *
                     </label>
                     <div className="relative">
@@ -239,7 +237,7 @@ export default function ContactEnquirySection() {
                       <input
                         required
                         type="email"
-                        placeholder="murthy@hospitalgroup.com"
+                        id="contact-email" name="email" autoComplete="email" placeholder="you@organization.com"
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                         className="w-full pl-9 pr-3 py-2 text-sm border border-slate-300 rounded-xl focus:ring-2 focus:ring-teal-500 outline-none"
@@ -250,10 +248,11 @@ export default function ContactEnquirySection() {
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
+                    <label htmlFor="contact-phone" className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
                       Contact Number / WhatsApp *
                     </label>
                     <PhoneInputWithCountry
+                      id="contact-phone"
                       value={formData.phone}
                       countryCode={formData.countryCode}
                       onChangePhone={(val) => setFormData({ ...formData, phone: val })}
@@ -262,7 +261,7 @@ export default function ContactEnquirySection() {
                   </div>
 
                   <div>
-                    <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
+                    <label htmlFor="contact-organization" className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
                       Organization / Hospital Name *
                     </label>
                     <div className="relative">
@@ -270,7 +269,7 @@ export default function ContactEnquirySection() {
                       <input
                         required
                         type="text"
-                        placeholder="Hospital, Industrial Plant, or Enterprise"
+                        id="contact-organization" name="organization" autoComplete="organization" placeholder="Organization name"
                         value={formData.organization}
                         onChange={(e) => setFormData({ ...formData, organization: e.target.value })}
                         className="w-full pl-9 pr-3 py-2 text-sm border border-slate-300 rounded-xl focus:ring-2 focus:ring-teal-500 outline-none"
@@ -280,10 +279,11 @@ export default function ContactEnquirySection() {
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
+                  <label htmlFor="contact-service" className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
                     Primary Area of Engagement *
                   </label>
                   <select
+                    id="contact-service" name="serviceType"
                     value={formData.serviceType}
                     onChange={(e) => setFormData({ ...formData, serviceType: e.target.value })}
                     className="w-full px-3 py-2.5 text-sm border border-slate-300 rounded-xl focus:ring-2 focus:ring-teal-500 outline-none bg-white"
@@ -298,10 +298,11 @@ export default function ContactEnquirySection() {
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
+                  <label htmlFor="contact-message" className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
                     Project Details / Requirement Summary
                   </label>
                   <textarea
+                    id="contact-message" name="message"
                     rows={3}
                     placeholder="Provide details on bed capacity, location, current challenges, required clinical specialties, or target launch timeline..."
                     value={formData.message}
